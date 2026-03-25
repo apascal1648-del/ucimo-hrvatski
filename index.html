@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hrvatski – Niveau Intermédiaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0d1b2a;--bg2:#112233;--bg3:#162840;--panel:#1a2f45;--border:#1e3a52;
+  --sea:#0e8a7a;--sea2:#13b39f;--sea-glow:rgba(14,138,122,0.25);
+  --gold:#e8b84b;--gold2:#ffd174;--gold-glow:rgba(232,184,75,0.2);
+  --terra:#d45f3c;--text:#e8f0f8;--text2:#8ba8c0;--text3:#4d6f8a;
+  --success:#2ec9a0;--error:#e05555;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.stars{position:fixed;inset:0;z-index:0;background:
+  radial-gradient(1px 1px at 20% 15%,rgba(255,255,255,.6) 0%,transparent 100%),
+  radial-gradient(1px 1px at 45% 8%,rgba(255,255,255,.4) 0%,transparent 100%),
+  radial-gradient(1px 1px at 70% 20%,rgba(255,255,255,.5) 0%,transparent 100%),
+  radial-gradient(1px 1px at 85% 5%,rgba(255,255,255,.7) 0%,transparent 100%),
+  radial-gradient(1px 1px at 60% 35%,rgba(255,255,255,.4) 0%,transparent 100%),
+  radial-gradient(2px 2px at 35% 25%,rgba(14,138,122,.5) 0%,transparent 100%),
+  radial-gradient(2px 2px at 75% 12%,rgba(232,184,75,.4) 0%,transparent 100%),
+  linear-gradient(180deg,#0a1520 0%,#0d1b2a 60%,#112233 100%)}
+.sea-glow{position:fixed;bottom:0;left:0;right:0;height:300px;z-index:0;background:linear-gradient(0deg,rgba(14,138,122,.06) 0%,transparent 100%);pointer-events:none}
+.app{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 18px 80px}
+header{padding:32px 0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);margin-bottom:22px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-flag{font-size:1.8rem}
+.logo-text h1{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text);letter-spacing:-.5px;line-height:1.1}
+.logo-text h1 em{color:var(--sea2);font-style:italic}
+.logo-text p{font-size:.73rem;color:var(--text3);margin-top:2px;letter-spacing:1px;text-transform:uppercase}
+.xp-panel{display:flex;align-items:center;gap:14px}
+.level-badge{background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%);color:#1a1000;border-radius:8px;padding:5px 12px;font-weight:700;font-size:.78rem;letter-spacing:.5px;white-space:nowrap}
+.xp-bar-wrap{min-width:120px}
+.xp-bar-label{font-size:.68rem;color:var(--text3);margin-bottom:4px;display:flex;justify-content:space-between}
+.xp-bar-bg{height:6px;background:var(--border);border-radius:10px;overflow:hidden}
+.xp-bar-fill{height:100%;background:linear-gradient(90deg,var(--sea) 0%,var(--sea2) 100%);border-radius:10px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.stats-row{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.stat-chip{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:8px 16px;font-size:.82rem;display:flex;align-items:center;gap:8px;color:var(--text2)}
+.stat-chip strong{color:var(--text);font-size:1.05rem;font-weight:600}
+.stat-chip.fire strong{color:var(--gold)}.stat-chip.green strong{color:var(--success)}.stat-chip.red strong{color:var(--error)}
+.mode-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab-btn{border:1px solid var(--border);cursor:pointer;background:var(--panel);border-radius:12px;padding:9px 18px;font-family:'IBM Plex Sans',sans-serif;font-size:.82rem;font-weight:500;color:var(--text2);transition:all .18s;display:flex;align-items:center;gap:7px}
+.tab-btn:hover{border-color:var(--sea);color:var(--text)}
+.tab-btn.active{background:var(--sea);border-color:var(--sea2);color:#fff;box-shadow:0 0 20px var(--sea-glow)}
+.tab-btn .badge{background:rgba(255,255,255,.2);border-radius:6px;padding:1px 6px;font-size:.68rem;font-weight:600}
+.cat-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+.cat-btn{border:1px solid var(--border);cursor:pointer;background:transparent;border-radius:10px;padding:6px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:.78rem;font-weight:400;color:var(--text3);transition:all .15s}
+.cat-btn:hover{border-color:var(--gold);color:var(--text2)}
+.cat-btn.active{background:var(--gold-glow);border-color:var(--gold);color:var(--gold);font-weight:600}
+.cat-mastery{display:inline-block;margin-left:5px;font-size:.65rem;vertical-align:middle}
+.direction-row{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.dir-label{font-size:.78rem;color:var(--text3)}
+.dir-toggle{display:flex;gap:6px}
+.dir-btn{border:1px solid var(--border);cursor:pointer;background:var(--panel);border-radius:8px;padding:5px 12px;font-size:.78rem;color:var(--text2);font-family:'IBM Plex Sans',sans-serif;transition:all .15s}
+.dir-btn.active{background:var(--bg3);border-color:var(--sea2);color:var(--sea2)}
+
+/* === SPEAK BUTTON === */
+.speak-btn{background:none;border:1px solid var(--sea);border-radius:50%;width:38px;height:38px;cursor:pointer;color:var(--sea2);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .18s;flex-shrink:0}
+.speak-btn:hover{background:var(--sea-glow);transform:scale(1.1)}
+.speak-btn.speaking{animation:pulse-ring .8s ease infinite;border-color:var(--sea2);color:var(--gold)}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 0 rgba(14,138,122,.4)}50%{box-shadow:0 0 0 8px rgba(14,138,122,0)}}
+.speak-inline{background:none;border:none;cursor:pointer;color:var(--sea2);font-size:.9rem;padding:2px 6px;border-radius:6px;transition:all .15s;opacity:.7}
+.speak-inline:hover{opacity:1;background:var(--sea-glow)}
+
+/* === FLASHCARD === */
+.fc-area{perspective:1400px;margin-bottom:20px;cursor:pointer}
+.flashcard{width:100%;height:280px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1);position:relative;border-radius:20px}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;border-radius:20px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px}
+.fc-front{background:linear-gradient(145deg,var(--bg3) 0%,var(--panel) 100%);border:1px solid var(--border)}
+.fc-back{background:linear-gradient(145deg,#0f2a1e 0%,#122b22 100%);border:1px solid var(--sea);transform:rotateY(180deg);box-shadow:inset 0 0 60px rgba(14,138,122,.08)}
+.fc-lang{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.fc-word{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:700;color:var(--text);text-align:center;line-height:1.2}
+.fc-back .fc-word{color:var(--sea2)}
+.fc-pron{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--gold);margin-top:10px}
+.fc-example{font-size:.8rem;color:var(--text3);margin-top:10px;font-style:italic;text-align:center;max-width:300px}
+.fc-grammar-tag{position:absolute;top:16px;right:16px;background:var(--sea-glow);border:1px solid var(--sea);color:var(--sea2);border-radius:6px;padding:3px 8px;font-size:.65rem;letter-spacing:1px;text-transform:uppercase}
+.fc-tap{font-size:.72rem;color:var(--text3);margin-top:20px;display:flex;align-items:center;gap:5px}
+.fc-back-row{display:flex;align-items:center;gap:12px;justify-content:center}
+.mastery-row{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.mastery-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:background .3s}
+.mastery-dot.known{background:var(--success)}.mastery-dot.unknown{background:var(--error)}
+.self-assess{display:flex;gap:12px;margin-bottom:20px}
+.sa-btn{flex:1;border:none;cursor:pointer;border-radius:12px;padding:13px;font-family:'IBM Plex Sans',sans-serif;font-size:.9rem;font-weight:600;transition:all .18s}
+.sa-btn:disabled{opacity:.3;cursor:default}
+.sa-btn.know{background:rgba(46,201,160,.15);border:1px solid var(--success);color:var(--success)}
+.sa-btn.know:not(:disabled):hover{background:rgba(46,201,160,.25)}
+.sa-btn.dontknow{background:rgba(224,85,85,.15);border:1px solid var(--error);color:var(--error)}
+.sa-btn.dontknow:not(:disabled):hover{background:rgba(224,85,85,.25)}
+.fc-nav{display:flex;align-items:center;justify-content:center;gap:18px}
+.nav-btn{background:var(--panel);border:1px solid var(--border);color:var(--text2);cursor:pointer;border-radius:50%;width:46px;height:46px;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.nav-btn:hover{border-color:var(--sea2);color:var(--sea2)}
+.nav-btn:active{transform:scale(.92)}
+.nav-info{font-size:.82rem;color:var(--text3);min-width:70px;text-align:center}
+
+/* === TIMER RING === */
+.timer-ring-wrap{display:flex;justify-content:center;align-items:center;gap:16px;margin-bottom:18px}
+.timer-ring{position:relative;width:70px;height:70px}
+.timer-svg{transform:rotate(-90deg)}
+.timer-track{fill:none;stroke:var(--border);stroke-width:5}
+.timer-fill{fill:none;stroke:var(--sea2);stroke-width:5;stroke-linecap:round;stroke-dasharray:188.5;stroke-dashoffset:0;transition:stroke-dashoffset .1s linear,stroke .3s}
+.timer-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:1.1rem;font-weight:600;color:var(--text)}
+
+/* === QUIZ === */
+.quiz-q-box{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:30px 24px;text-align:center;margin-bottom:18px;position:relative;overflow:hidden}
+.quiz-q-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sea) 0%,var(--sea2) 100%)}
+.qz-direction{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.qz-word{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:700;color:var(--text)}
+.qz-word-row{display:flex;align-items:center;justify-content:center;gap:12px}
+.qz-context{font-size:.82rem;color:var(--text3);margin-top:8px;font-style:italic}
+.qz-grammar-hint{display:inline-block;margin-top:10px;background:rgba(232,184,75,.1);border:1px solid rgba(232,184,75,.3);color:var(--gold);border-radius:6px;padding:3px 10px;font-size:.72rem}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.opt-btn{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:15px 14px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:.9rem;font-weight:400;color:var(--text);text-align:center;transition:all .15s}
+.opt-btn:hover:not(:disabled){border-color:var(--sea2);color:var(--sea2);background:rgba(14,138,122,.08)}
+.opt-btn.correct{background:rgba(46,201,160,.15)!important;border-color:var(--success)!important;color:var(--success)!important;font-weight:600}
+.opt-btn.wrong{background:rgba(224,85,85,.15)!important;border-color:var(--error)!important;color:var(--error)!important}
+.opt-btn:disabled{cursor:default}
+.feedback-bar{min-height:28px;text-align:center;font-size:.88rem;font-weight:600;margin-bottom:14px;transition:opacity .2s}
+.feedback-bar.good{color:var(--success)}.feedback-bar.bad{color:var(--error)}
+.feedback-bar .xp-flash{color:var(--gold);margin-left:8px;font-size:.78rem}
+.next-btn{width:100%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--sea) 0%,var(--sea2) 100%);color:#fff;border-radius:13px;padding:14px;font-family:'IBM Plex Sans',sans-serif;font-size:.95rem;font-weight:600;transition:all .18s;box-shadow:0 4px 20px var(--sea-glow)}
+.next-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 28px var(--sea-glow)}
+.next-btn:disabled{opacity:.35;cursor:default;transform:none}
+
+/* === TYPING === */
+.typing-box{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:30px;margin-bottom:18px;text-align:center}
+.typing-prompt{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.typing-word{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:8px}
+.typing-word-row{display:flex;align-items:center;justify-content:center;gap:12px}
+.typing-context{font-size:.8rem;color:var(--text3);font-style:italic;margin-bottom:20px}
+.type-input-wrap{position:relative;margin-bottom:12px}
+.type-input{width:100%;background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:14px 50px 14px 18px;font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:var(--text);transition:border-color .18s;outline:none}
+.type-input:focus{border-color:var(--sea2)}
+.type-input.correct-anim{border-color:var(--success)}
+.type-input.wrong-anim{border-color:var(--error);animation:shake .35s ease}
+.type-submit{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:var(--sea);border:none;cursor:pointer;width:32px;height:32px;border-radius:8px;color:#fff;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.type-submit:hover{background:var(--sea2)}
+.hint-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:10px}
+.hint-btn{background:none;border:1px dashed var(--border);cursor:pointer;color:var(--text3);border-radius:8px;padding:5px 12px;font-size:.78rem;font-family:'IBM Plex Sans',sans-serif;transition:all .15s}
+.hint-btn:hover{border-color:var(--gold);color:var(--gold)}
+.hint-text{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:.82rem;letter-spacing:3px}
+.type-answer-reveal{text-align:center;margin:10px 0;font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--sea2)}
+
+/* === PHRASES === */
+.phrase-box{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:28px;margin-bottom:18px}
+.phrase-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.phrase-label{font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3)}
+.phrase-type-badge{font-size:.68rem;padding:3px 9px;border-radius:6px;font-weight:600;letter-spacing:.5px}
+.badge-fill{background:rgba(14,138,122,.15);border:1px solid var(--sea);color:var(--sea2)}
+.badge-order{background:rgba(232,184,75,.12);border:1px solid var(--gold);color:var(--gold)}
+.badge-multi{background:rgba(212,95,60,.15);border:1px solid var(--terra);color:var(--terra)}
+.badge-conj{background:rgba(138,114,189,.15);border:1px solid #8a72bd;color:#b49de8}
+.phrase-sentence{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:16px}
+.blank{display:inline-block;min-width:90px;border-bottom:2px solid var(--sea2);padding:0 4px;text-align:center;color:var(--sea2);font-family:'IBM Plex Mono',monospace;font-size:.9rem;vertical-align:bottom;transition:all .3s}
+.blank.filled-correct{border-color:var(--success);color:var(--success)}
+.blank.filled-wrong{border-color:var(--error);color:var(--error)}
+.phrase-opts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.phrase-opt{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:7px 14px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--text2);transition:all .15s}
+.phrase-opt:hover:not(:disabled){border-color:var(--sea2);color:var(--sea2)}
+.phrase-opt.selected-opt{border-color:var(--sea2);background:rgba(14,138,122,.12);color:var(--sea2)}
+.phrase-opt.correct{border-color:var(--success);background:rgba(46,201,160,.12);color:var(--success);font-weight:600}
+.phrase-opt.wrong{border-color:var(--error);background:rgba(224,85,85,.12);color:var(--error)}
+.phrase-opt:disabled{cursor:default}
+/* Word order chips */
+.word-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.word-chip{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:7px 14px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:var(--text2);transition:all .15s;user-select:none}
+.word-chip:hover:not(.used){border-color:var(--sea2);color:var(--sea2)}
+.word-chip.used{opacity:.3;cursor:default}
+.word-order-answer{display:flex;gap:7px;flex-wrap:wrap;min-height:44px;padding:10px;border:1px dashed var(--border);border-radius:10px;margin-bottom:12px;align-items:center}
+.word-order-answer.has-words{border-color:var(--sea)}
+.placed-word{background:var(--sea-glow);border:1px solid var(--sea);border-radius:7px;padding:6px 12px;font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--sea2);cursor:pointer;transition:all .15s}
+.placed-word:hover{background:rgba(224,85,85,.15);border-color:var(--error);color:var(--error)}
+.word-order-placeholder{font-size:.78rem;color:var(--text3);font-style:italic}
+.phrase-translation{font-size:.82rem;color:var(--text3);font-style:italic;margin-top:10px}
+.phrase-grammar-note{margin-top:12px;padding:10px 14px;background:rgba(232,184,75,.07);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;font-size:.78rem;color:var(--text2);line-height:1.6}
+.multi-blank-status{font-size:.78rem;color:var(--text3);margin-bottom:10px;text-align:center}
+
+/* === MATCH === */
+.match-timer-bar{height:5px;background:var(--border);border-radius:10px;margin-bottom:16px;overflow:hidden}
+.match-timer-fill{height:100%;background:linear-gradient(90deg,var(--sea) 0%,var(--gold) 100%);border-radius:10px;transition:width .1s linear}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px}
+.match-col{display:flex;flex-direction:column;gap:9px}
+.match-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:13px 10px;text-align:center;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;color:var(--text);transition:all .15s;user-select:none;min-height:50px;display:flex;align-items:center;justify-content:center}
+.match-card:hover:not(.matched):not([disabled]){border-color:var(--sea2)}
+.match-card.selected{border-color:var(--gold);background:var(--gold-glow);color:var(--gold);box-shadow:0 0 18px var(--gold-glow)}
+.match-card.matched{border-color:var(--success);background:rgba(46,201,160,.08);color:var(--success);font-weight:600;cursor:default;opacity:.6}
+.match-card.wrong-flash{animation:shake .35s ease;border-color:var(--error)}
+
+/* === GRAMMAR PANEL === */
+.grammar-card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:20px}
+.grammar-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);margin-bottom:4px}
+.grammar-sub{font-size:.75rem;color:var(--text3);margin-bottom:16px}
+.grammar-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.grammar-table th{text-align:left;color:var(--text3);font-weight:500;padding:7px 10px;border-bottom:1px solid var(--border);font-size:.72rem;letter-spacing:1px;text-transform:uppercase}
+.grammar-table td{padding:8px 10px;color:var(--text);border-bottom:1px solid rgba(30,58,82,.5)}
+.grammar-table tr:last-child td{border-bottom:none}
+.grammar-table td:first-child{color:var(--text3);font-size:.78rem}
+.grammar-table td.highlight{color:var(--sea2);font-family:'IBM Plex Mono',monospace}
+
+/* === TOAST & CONFETTI === */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--panel);border:1px solid var(--sea);border-radius:14px;padding:12px 24px;font-size:.9rem;color:var(--text);box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:1000;transition:transform .3s cubic-bezier(.4,0,.2,1);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.confetti-container{position:fixed;inset:0;pointer-events:none;z-index:9999}
+.confetti-piece{position:absolute;top:-12px;border-radius:2px;animation:confettiFall linear forwards}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}60%{transform:translateX(7px)}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+/* === LISTEN MODE === */
+.listen-box{background:linear-gradient(145deg,#0a1e2e 0%,#0f2535 100%);border:1px solid rgba(14,138,122,.5);border-radius:20px;padding:40px 30px;text-align:center;margin-bottom:20px;position:relative}
+.listen-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sea) 0%,var(--gold) 50%,var(--sea2) 100%)}
+.listen-main-btn{background:linear-gradient(135deg,var(--sea) 0%,var(--sea2) 100%);border:none;cursor:pointer;width:80px;height:80px;border-radius:50%;color:#fff;font-size:2rem;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;transition:all .2s;box-shadow:0 0 30px var(--sea-glow)}
+.listen-main-btn:hover{transform:scale(1.08);box-shadow:0 0 50px var(--sea-glow)}
+.listen-main-btn.playing{animation:pulse-ring .8s ease infinite}
+.listen-prompt{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.listen-word-hidden{font-family:'Playfair Display',serif;font-size:2rem;color:var(--text3);letter-spacing:8px}
+.listen-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+
+@media(max-width:540px){
+  .quiz-opts,.listen-opts{grid-template-columns:1fr}
+  .mode-tabs{gap:6px}.tab-btn{padding:8px 12px;font-size:.78rem}
+  header{flex-direction:column;align-items:flex-start;gap:14px}
+}
+</style>
+</head>
+<body>
+<div class="stars"></div><div class="sea-glow"></div>
+
+<div class="app">
+  <header>
+    <div class="logo">
+      <div class="logo-flag">🇭🇷</div>
+      <div class="logo-text">
+        <h1>Učimo <em>Hrvatski</em></h1>
+        <p>Niveau Intermédiaire · Adriatique</p>
+      </div>
+    </div>
+    <div class="xp-panel">
+      <div class="level-badge" id="level-badge">Početnik</div>
+      <div class="xp-bar-wrap">
+        <div class="xp-bar-label"><span>XP</span><span id="xp-label">0 / 100</span></div>
+        <div class="xp-bar-bg"><div class="xp-bar-fill" id="xp-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats-row">
+    <div class="stat-chip fire">🔥 <strong id="s-streak">0</strong></div>
+    <div class="stat-chip green">✓ <strong id="s-correct">0</strong></div>
+    <div class="stat-chip red">✗ <strong id="s-wrong">0</strong></div>
+    <div class="stat-chip">⭐ <strong id="s-xp">0</strong> XP</div>
+  </div>
+
+  <div class="mode-tabs">
+    <button class="tab-btn active" data-mode="flashcard" onclick="switchMode('flashcard')">🃏 Flashcards</button>
+    <button class="tab-btn" data-mode="listen" onclick="switchMode('listen')">🔊 Écoute <span class="badge">Nouveau</span></button>
+    <button class="tab-btn" data-mode="chrono" onclick="switchMode('chrono')">⏱️ Chrono</button>
+    <button class="tab-btn" data-mode="typing" onclick="switchMode('typing')">✍️ Frappe</button>
+    <button class="tab-btn" data-mode="phrases" onclick="switchMode('phrases')">📝 Phrases</button>
+    <button class="tab-btn" data-mode="match" onclick="switchMode('match')">⚡ Match</button>
+  </div>
+
+  <div class="cat-row" id="cat-row"></div>
+  <div class="direction-row" id="direction-row">
+    <span class="dir-label">Direction :</span>
+    <div class="dir-toggle">
+      <button class="dir-btn active" data-dir="fr2hr" onclick="setDir('fr2hr')">🇫🇷 → 🇭🇷</button>
+      <button class="dir-btn" data-dir="hr2fr" onclick="setDir('hr2fr')">🇭🇷 → 🇫🇷</button>
+    </div>
+  </div>
+
+  <!-- FLASHCARD -->
+  <div id="mode-flashcard">
+    <div class="mastery-row" id="mastery-row"></div>
+    <div class="fc-area" onclick="flipCard()">
+      <div class="flashcard" id="flashcard">
+        <div class="fc-face fc-front">
+          <div class="fc-lang" id="fc-lang-front">🇫🇷 Français</div>
+          <div class="fc-word" id="fc-front-word">chargement…</div>
+          <div class="fc-tap">👆 Cliquez pour retourner</div>
+        </div>
+        <div class="fc-face fc-back">
+          <div class="fc-grammar-tag" id="fc-gtag" style="display:none"></div>
+          <div class="fc-lang" id="fc-lang-back">🇭🇷 Croate</div>
+          <div class="fc-back-row">
+            <div class="fc-word" id="fc-back-word">—</div>
+            <button class="speak-btn" id="fc-speak-btn" onclick="event.stopPropagation();speakCurrent()" title="Écouter">🔊</button>
+          </div>
+          <div class="fc-pron" id="fc-pron"></div>
+          <div class="fc-example" id="fc-example"></div>
+        </div>
+      </div>
+    </div>
+    <div class="self-assess">
+      <button class="sa-btn dontknow" id="sa-no" onclick="selfAssess(false)" disabled>✗ Je ne savais pas</button>
+      <button class="sa-btn know" id="sa-yes" onclick="selfAssess(true)" disabled>✓ Je savais</button>
+    </div>
+    <div class="fc-nav">
+      <button class="nav-btn" onclick="prevCard()">←</button>
+      <span class="nav-info" id="fc-info">1 / —</span>
+      <button class="nav-btn" onclick="nextCard()">→</button>
+    </div>
+  </div>
+
+  <!-- LISTEN MODE -->
+  <div id="mode-listen" style="display:none">
+    <div class="listen-box">
+      <div class="listen-prompt">ÉCOUTEZ ET IDENTIFIEZ</div>
+      <button class="listen-main-btn" id="listen-play-btn" onclick="playListenAudio()">🔊</button>
+      <div class="listen-word-hidden" id="listen-hidden">• • • •</div>
+      <div style="font-size:.75rem;color:var(--text3);margin-top:8px" id="listen-ctx"></div>
+    </div>
+    <div class="listen-opts" id="listen-opts"></div>
+    <div class="feedback-bar" id="listen-feedback"></div>
+    <button class="next-btn" id="listen-next" onclick="nextListen()" disabled>Suivante →</button>
+  </div>
+
+  <!-- CHRONO QUIZ -->
+  <div id="mode-chrono" style="display:none">
+    <div class="timer-ring-wrap">
+      <div class="timer-ring">
+        <svg class="timer-svg" width="70" height="70" viewBox="0 0 70 70">
+          <circle class="timer-track" cx="35" cy="35" r="30"/>
+          <circle class="timer-fill" id="timer-fill" cx="35" cy="35" r="30"/>
+        </svg>
+        <div class="timer-text" id="timer-text">10</div>
+      </div>
+    </div>
+    <div class="quiz-q-box">
+      <div class="qz-direction" id="qz-dir-label">TRADUIRE EN CROATE</div>
+      <div class="qz-word-row">
+        <div class="qz-word" id="qz-word">—</div>
+        <button class="speak-inline" id="qz-speak" onclick="speakQuizWord()" title="Écouter" style="display:none">🔊</button>
+      </div>
+      <div class="qz-context" id="qz-ctx"></div>
+      <div class="qz-grammar-hint" id="qz-ghint" style="display:none"></div>
+    </div>
+    <div class="quiz-opts" id="qz-opts"></div>
+    <div class="feedback-bar" id="qz-feedback"></div>
+    <button class="next-btn" id="qz-next" onclick="nextChrono()" disabled>Suivante →</button>
+  </div>
+
+  <!-- TYPING -->
+  <div id="mode-typing" style="display:none">
+    <div class="typing-box">
+      <div class="typing-prompt" id="tp-direction">ÉCRIRE EN CROATE</div>
+      <div class="typing-word-row">
+        <div class="typing-word" id="tp-word">—</div>
+        <button class="speak-inline" id="tp-speak" onclick="speakTypingWord()" title="Écouter" style="display:none">🔊</button>
+      </div>
+      <div class="typing-context" id="tp-ctx"></div>
+    </div>
+    <div class="type-input-wrap">
+      <input type="text" class="type-input" id="type-input" placeholder="Tapez la traduction…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="type-submit" onclick="submitTyping()">↵</button>
+    </div>
+    <div class="hint-row">
+      <button class="hint-btn" onclick="showHint()">💡 Indice</button>
+      <span class="hint-text" id="hint-text"></span>
+    </div>
+    <div class="type-answer-reveal" id="type-reveal" style="display:none"></div>
+    <div class="feedback-bar" id="tp-feedback"></div>
+    <button class="next-btn" id="tp-next" onclick="nextTyping()" disabled>Suivante →</button>
+  </div>
+
+  <!-- PHRASES -->
+  <div id="mode-phrases" style="display:none">
+    <div class="phrase-box" id="phrase-box">
+      <div class="phrase-label-row">
+        <div class="phrase-label">COMPLÉTEZ / RÉORDONNEZ</div>
+        <div class="phrase-type-badge" id="ph-type-badge"></div>
+      </div>
+      <div class="phrase-sentence" id="ph-sentence">—</div>
+      <div id="ph-word-order-answer" style="display:none">
+        <div class="word-order-answer" id="ph-answer-row"><span class="word-order-placeholder">Cliquez les mots dans le bon ordre…</span></div>
+        <div class="word-chips" id="ph-word-chips"></div>
+      </div>
+      <div class="phrase-translation" id="ph-translation"></div>
+      <div class="phrase-grammar-note" id="ph-note" style="display:none"></div>
+    </div>
+    <div class="phrase-opts" id="ph-opts"></div>
+    <div class="multi-blank-status" id="ph-blank-status"></div>
+    <div class="feedback-bar" id="ph-feedback"></div>
+    <button class="next-btn" id="ph-submit" onclick="submitPhrase()" style="display:none">Vérifier ✓</button>
+    <button class="next-btn" id="ph-next" onclick="nextPhrase()" disabled>Phrase suivante →</button>
+  </div>
+
+  <!-- MATCH RAPIDE -->
+  <div id="mode-match" style="display:none">
+    <div class="match-timer-bar"><div class="match-timer-fill" id="match-timer-fill" style="width:100%"></div></div>
+    <div style="text-align:center;font-size:.85rem;color:var(--text2);margin-bottom:12px">
+      Temps : <strong id="match-time" style="color:var(--gold)">60</strong>s — Paires : <strong id="match-pairs-count" style="color:var(--gold)">0/6</strong>
+    </div>
+    <div class="match-grid"><div class="match-col" id="m-fr-col"></div><div class="match-col" id="m-hr-col"></div></div>
+    <div class="feedback-bar" id="match-fb"></div>
+    <button class="next-btn" onclick="startMatchRound()">🔀 Nouveau round</button>
+  </div>
+
+  <div id="grammar-panel" style="margin-top:28px"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="confetti-container" id="confetti"></div>
+
+<script>
+// ================================================================
+// TTS
+// ================================================================
+let ttsVoice = null;
+let speakingBtn = null;
+
+function initTTS() {
+  const load = () => {
+    const voices = speechSynthesis.getVoices();
+    ttsVoice = voices.find(v => v.lang && v.lang.startsWith('hr'))
+      || voices.find(v => v.lang && v.lang.startsWith('hr-'))
+      || null;
+  };
+  load();
+  speechSynthesis.onvoiceschanged = load;
+}
+
+function speak(text, btn) {
+  if (!text) return;
+  speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'hr-HR';
+  utt.rate = 0.82;
+  utt.pitch = 1;
+  if (ttsVoice) utt.voice = ttsVoice;
+  if (speakingBtn) speakingBtn.classList.remove('speaking');
+  if (btn) { speakingBtn = btn; btn.classList.add('speaking'); }
+  utt.onend = () => { if (btn) btn.classList.remove('speaking'); speakingBtn = null; };
+  utt.onerror = () => { if (btn) btn.classList.remove('speaking'); speakingBtn = null; };
+  speechSynthesis.speak(utt);
+}
+
+function speakCurrent() {
+  const items = VOCAB[cat];
+  if (!items) return;
+  const item = items[cardIdx];
+  speak(item.hr, document.getElementById('fc-speak-btn'));
+}
+function speakQuizWord() {
+  if (!chronoItem) return;
+  if (dir === 'hr2fr') speak(chronoItem.hr, document.getElementById('qz-speak'));
+}
+function speakTypingWord() {
+  if (!typingItem) return;
+  if (dir === 'hr2fr') speak(typingItem.hr, document.getElementById('tp-speak'));
+}
+
+// ================================================================
+// VOCABULARY — ~20 entries per category
+// ================================================================
+const VOCAB = {
+  "Salutations": [
+    { fr:"Bonjour", hr:"Dobar dan", pron:"do-bar dan", ex:"Dobar dan! Kako ste?", grammar:"salut formel" },
+    { fr:"Bonsoir", hr:"Dobra večer", pron:"dob-ra vé-cher", ex:"Dobra večer, gospođo!", grammar:"salut formel" },
+    { fr:"Bonne nuit", hr:"Laku noć", pron:"la-kou notch", ex:"Laku noć i slatki snovi!", grammar:"souhait" },
+    { fr:"Salut !", hr:"Bok!", pron:"bok", ex:"Bok Ivane, kako si?", grammar:"informel" },
+    { fr:"Au revoir", hr:"Doviđenja", pron:"do-vi-djén-ya", ex:"Doviđenja, vidimo se sutra.", grammar:"congé formel" },
+    { fr:"À bientôt", hr:"Vidimo se", pron:"vi-di-mo sé", ex:"Vidimo se sutra ujutro!", grammar:"litt. on se voit" },
+    { fr:"Comment tu t'appelles ?", hr:"Kako se zoveš?", pron:"ka-ko sé zo-véch", ex:"Hej, kako se zoveš?", grammar:"verbe zvati se" },
+    { fr:"Je m'appelle…", hr:"Zovem se…", pron:"zo-vém sé", ex:"Zovem se Marko.", grammar:"1ère pers. sg." },
+    { fr:"Enchanté(e)", hr:"Drago mi je", pron:"dra-go mi yé", ex:"Drago mi je upoznati vas.", grammar:"expression figée" },
+    { fr:"Comment ça va ?", hr:"Kako si?", pron:"ka-ko si", ex:"Kako si danas?", grammar:"informel 2sg" },
+    { fr:"Ça va bien, merci", hr:"Dobro, hvala", pron:"dob-ro, hva-la", ex:"Dobro, hvala. A ti?", grammar:"réponse courante" },
+    { fr:"Pas très bien", hr:"Nije dobro", pron:"ni-yé dob-ro", ex:"Nije dobro, boli me glava.", grammar:"négation + adj." },
+    { fr:"Merci beaucoup", hr:"Hvala puno", pron:"hva-la pou-no", ex:"Hvala puno za pomoć!", grammar:"adverbe puno" },
+    { fr:"Je vous en prie", hr:"Molim", pron:"mo-lim", ex:"Molim! (réponse à hvala)", grammar:"aussi: SVP" },
+    { fr:"Excusez-moi", hr:"Oprostite", pron:"o-pros-ti-té", ex:"Oprostite, gdje je banka?", grammar:"impératif formel" },
+    { fr:"Pardon (informel)", hr:"Oprosti", pron:"o-pros-ti", ex:"Oprosti, nisam te čuo.", grammar:"impératif informel" },
+    { fr:"Vous parlez français ?", hr:"Govorite li francuski?", pron:"go-vo-ri-té li fran-tsouz-ki", ex:"Govorite li engleski?", grammar:"particule li" },
+    { fr:"Je ne parle pas croate", hr:"Ne govorim hrvatski", pron:"né go-vo-rim hrv-at-ski", ex:"Žao mi je, ne govorim hrvatski.", grammar:"négation + verbe" },
+    { fr:"Pouvez-vous répéter ?", hr:"Možete li ponoviti?", pron:"mo-jé-té li po-no-vi-ti", ex:"Sporije molim, možete li ponoviti?", grammar:"forme polie" },
+    { fr:"Je ne comprends pas", hr:"Ne razumijem", pron:"né ra-zou-mi-yèm", ex:"Ne razumijem, govorite sporije.", grammar:"négation + verbe" },
+    { fr:"Bienvenue !", hr:"Dobrodošli!", pron:"dob-ro-doch-li", ex:"Dobrodošli u Hrvatsku!", grammar:"pluriel formel" },
+    { fr:"Félicitations !", hr:"Čestitamo!", pron:"chés-ti-ta-mo", ex:"Čestitamo na vjenčanju!", grammar:"1ère pl. formel" },
+  ],
+  "Verbes essentiels": [
+    { fr:"être (je suis)", hr:"biti (ja sam)", pron:"bi-ti / ya sam", ex:"Ja sam turistkinja.", grammar:"auxiliaire principal" },
+    { fr:"avoir (j'ai)", hr:"imati (ja imam)", pron:"i-ma-ti / ya i-mam", ex:"Imam rezervaciju.", grammar:"verbe -ati" },
+    { fr:"vouloir (je veux)", hr:"htjeti (ja hoću)", pron:"htié-ti / ya ho-tchou", ex:"Hoću jedno pivo, molim.", grammar:"verbe irrégulier" },
+    { fr:"pouvoir (je peux)", hr:"moći (ja mogu)", pron:"mo-tchi / ya mo-gou", ex:"Mogu li pomoći?", grammar:"verbe modal" },
+    { fr:"aller (je vais)", hr:"ići (ja idem)", pron:"i-tchi / ya i-dém", ex:"Idem na plažu.", grammar:"verbe mouvement" },
+    { fr:"parler (je parle)", hr:"govoriti (ja govorim)", pron:"go-vo-ri-ti", ex:"Govorim malo hrvatski.", grammar:"verbe -iti type" },
+    { fr:"comprendre (je comprends)", hr:"razumjeti (razumijem)", pron:"ra-zu-mié-ti", ex:"Ne razumijem, molim vas.", grammar:"verbe -jeti" },
+    { fr:"manger (je mange)", hr:"jesti (ja jedem)", pron:"yés-ti / ya yé-dèm", ex:"Jedem ručak u podne.", grammar:"irrégulier" },
+    { fr:"boire (je bois)", hr:"piti (ja pijem)", pron:"pi-ti / ya pi-yèm", ex:"Pijem kavu svako jutro.", grammar:"verbe -iti/-jem" },
+    { fr:"aimer (j'aime)", hr:"voljeti (ja volim)", pron:"vol-yé-ti / ya vo-lim", ex:"Volim more i sunce.", grammar:"verbe sentiment" },
+    { fr:"savoir (je sais)", hr:"znati (ja znam)", pron:"zna-ti / ya znam", ex:"Znam malo francuski.", grammar:"verbe -ati" },
+    { fr:"voir (je vois)", hr:"vidjeti (ja vidim)", pron:"vi-djé-ti / ya vi-dim", ex:"Vidim Jadransko more!", grammar:"verbe -eti" },
+    { fr:"venir (je viens)", hr:"doći (ja dođem)", pron:"do-tchi / ya do-djèm", ex:"Dođem sutra ujutro.", grammar:"perfectif de ići" },
+    { fr:"rester (je reste)", hr:"ostati (ja ostajem)", pron:"os-ta-ti / os-ta-yèm", ex:"Ostajem ovdje tjedan dana.", grammar:"verbe -ati/-jem" },
+    { fr:"travailler (je travaille)", hr:"raditi (ja radim)", pron:"ra-di-ti / ya ra-dim", ex:"Radim u hotelu.", grammar:"verbe -iti" },
+    { fr:"habiter (j'habite)", hr:"živjeti (ja živim)", pron:"ji-vyé-ti / ya ji-vim", ex:"Živim u Parizu.", grammar:"verbe lieu" },
+    { fr:"acheter (j'achète)", hr:"kupiti (ja kupim)", pron:"kou-pi-ti / ya kou-pim", ex:"Kupim suvenire za prijatelje.", grammar:"perfectif" },
+    { fr:"réserver (je réserve)", hr:"rezervirati (rezerviram)", pron:"ré-zèr-vi-ra-ti", ex:"Rezerviram sobu za dvoje.", grammar:"emprunt -irati" },
+    { fr:"partir (je pars)", hr:"otići (ja odem)", pron:"o-ti-tchi / ya o-dèm", ex:"Odem sutra u 8 sati.", grammar:"préfixe ot-" },
+    { fr:"apprendre (j'apprends)", hr:"učiti (ja učim)", pron:"ou-tchi-ti / ya ou-tchim", ex:"Učim hrvatski svaki dan.", grammar:"verbe -iti" },
+    { fr:"lire (je lis)", hr:"čitati (ja čitam)", pron:"tchi-ta-ti / ya tchi-tam", ex:"Čitam knjigu na terasi.", grammar:"verbe -ati" },
+    { fr:"écrire (j'écris)", hr:"pisati (ja pišem)", pron:"pi-sa-ti / ya pi-chèm", ex:"Pišem razglednicu.", grammar:"verbe -ati/-šem" },
+  ],
+  "Quotidien": [
+    { fr:"Aujourd'hui", hr:"Danas", pron:"da-nas", ex:"Danas idemo na izlet.", grammar:"adverbe de temps" },
+    { fr:"Demain", hr:"Sutra", pron:"sou-tra", ex:"Sutra je nedjelja.", grammar:"adverbe de temps" },
+    { fr:"Hier", hr:"Jučer", pron:"you-cher", ex:"Jučer smo bili na plaži.", grammar:"adverbe de temps" },
+    { fr:"Maintenant", hr:"Sada", pron:"sa-da", ex:"Sada sam slobodan.", grammar:"adverbe" },
+    { fr:"Toujours", hr:"Uvijek", pron:"ou-vi-yèk", ex:"Uvijek pijem kavu ujutro.", grammar:"adverbe fréquence" },
+    { fr:"Jamais", hr:"Nikad", pron:"ni-kad", ex:"Nikad ne pijem alkohol.", grammar:"adverbe négatif" },
+    { fr:"Souvent", hr:"Često", pron:"tchés-to", ex:"Često idemo na more.", grammar:"adverbe fréquence" },
+    { fr:"Parfois", hr:"Ponekad", pron:"po-né-kad", ex:"Ponekad jedem vani.", grammar:"adverbe fréquence" },
+    { fr:"Matin", hr:"Jutro", pron:"you-tro", ex:"Dobro jutro!", grammar:"nom neutre" },
+    { fr:"Soir", hr:"Večer", pron:"vé-cher", ex:"Dobra večer!", grammar:"nom féminin" },
+    { fr:"Nuit", hr:"Noć", pron:"notch", ex:"Laku noć!", grammar:"nom féminin" },
+    { fr:"Semaine", hr:"Tjedan", pron:"tyé-dan", ex:"Ostajem tjedan dana.", grammar:"nom masculin" },
+    { fr:"Lundi", hr:"Ponedjeljak", pron:"po-né-dyél-yak", ex:"Idemo u ponedjeljak.", grammar:"nom masculin" },
+    { fr:"Vendredi", hr:"Petak", pron:"pé-tak", ex:"U petak navečer.", grammar:"nom masculin" },
+    { fr:"Weekend", hr:"Vikend", pron:"vi-kènd", ex:"Što radiš ovaj vikend?", grammar:"emprunt anglais" },
+    { fr:"Beaucoup", hr:"Mnogo / puno", pron:"mno-go / pou-no", ex:"Hvala puno!", grammar:"adverbe quantité" },
+    { fr:"Un peu", hr:"Malo", pron:"ma-lo", ex:"Govorim malo hrvatski.", grammar:"adverbe quantité" },
+    { fr:"Encore", hr:"Još", pron:"yoch", ex:"Još jednom, molim.", grammar:"adverbe durée" },
+    { fr:"Déjà", hr:"Već", pron:"véch", ex:"Već sam bio tu.", grammar:"adverbe temps" },
+    { fr:"Trop", hr:"Previše", pron:"pré-vi-ché", ex:"To je previše skupo.", grammar:"préfixe pre-" },
+    { fr:"Assez", hr:"Dovoljno", pron:"do-vol-yno", ex:"Dovoljno sam se odmorio.", grammar:"adverbe quantité" },
+    { fr:"Ensemble", hr:"Zajedno", pron:"za-yéd-no", ex:"Idemo zajedno na izlet.", grammar:"adverbe" },
+  ],
+  "Voyage": [
+    { fr:"La plage", hr:"Plaža", pron:"pla-ja", ex:"Idemo na plažu danas.", grammar:"acc.: plažu" },
+    { fr:"La mer Adriatique", hr:"Jadransko more", pron:"yad-ran-sko mo-ré", ex:"Jadransko more je predivno.", grammar:"adj. + nom" },
+    { fr:"L'île", hr:"Otok", pron:"o-tok", ex:"Koji je otok najljepši?", grammar:"nominatif" },
+    { fr:"La vieille ville", hr:"Stari grad", pron:"sta-ri grad", ex:"Stari grad Dubrovnika.", grammar:"adj. + nom" },
+    { fr:"Combien ça coûte ?", hr:"Koliko košta?", pron:"ko-li-ko kos-hta", ex:"Koliko košta ulaznica?", grammar:"verbe koštati" },
+    { fr:"Trop cher", hr:"Preskupo", pron:"prés-kou-po", ex:"To je preskupo za mene.", grammar:"préfixe pre-" },
+    { fr:"Où est… ?", hr:"Gdje je…?", pron:"gd-yé yé", ex:"Gdje je centar grada?", grammar:"interrogatif lieu" },
+    { fr:"À quelle heure ?", hr:"U koliko sati?", pron:"ou ko-li-ko sa-ti", ex:"U koliko sati polazi bus?", grammar:"génitif pluriel" },
+    { fr:"Je suis perdu(e)", hr:"Izgubio sam se", pron:"iz-gou-bio sam sé", ex:"Izgubio sam se u centru.", grammar:"participe passé" },
+    { fr:"Pouvez-vous m'aider ?", hr:"Možete li mi pomoći?", pron:"mo-jé-té li mi po-mo-tchi", ex:"Oprostite, možete li mi pomoći?", grammar:"forme polie" },
+    { fr:"Un billet aller-retour", hr:"Povratna karta", pron:"po-vrat-na kar-ta", ex:"Jednu povratnu kartu, molim.", grammar:"adj. + nom" },
+    { fr:"La gare routière", hr:"Autobusni kolodvor", pron:"aou-to-bous-ni ko-lo-dvor", ex:"Autobusni kolodvor je blizu.", grammar:"adj. + nom" },
+    { fr:"Le ferry / bateau", hr:"Trajekt", pron:"tra-yèkt", ex:"Trajekt polazi u 10 sati.", grammar:"nom masculin" },
+    { fr:"Je voudrais réserver", hr:"Htio bih rezervirati", pron:"htio bih ré-zèr-vi-ra-ti", ex:"Htio bih rezervirati sobu za dvije noći.", grammar:"conditionnel" },
+    { fr:"Avez-vous une chambre libre ?", hr:"Imate li slobodnu sobu?", pron:"i-ma-té li slo-bod-nou so-bou", ex:"Imate li slobodnu sobu za večeras?", grammar:"li + accusatif" },
+    { fr:"Le petit-déjeuner inclus", hr:"S doručkom", pron:"s do-rout-chkom", ex:"Soba s doručkom, molim.", grammar:"instrumental" },
+    { fr:"Changer de l'argent", hr:"Mijenjati novac", pron:"mi-yén-ya-ti no-vats", ex:"Gdje mogu mijenjati novac?", grammar:"infinitif + acc." },
+    { fr:"L'office de tourisme", hr:"Turistički ured", pron:"tou-ris-titch-ki ou-réd", ex:"Turistički ured je u centru.", grammar:"adj. + nom" },
+    { fr:"À droite / à gauche", hr:"Desno / lijevo", pron:"dès-no / li-yé-vo", ex:"Idite desno, pa lijevo.", grammar:"adverbes direction" },
+    { fr:"Tout droit", hr:"Ravno", pron:"rav-no", ex:"Idite ravno do semafora.", grammar:"adverbe direction" },
+    { fr:"C'est loin ?", hr:"Je li daleko?", pron:"yé li da-lé-ko", ex:"Je li daleko od ovdje?", grammar:"particule li" },
+    { fr:"Près d'ici", hr:"Blizu odavde", pron:"bli-zou o-dav-dé", ex:"Hotel je blizu odavde.", grammar:"blizu + gén." },
+  ],
+  "Grammaire": [
+    { fr:"Je suis (être, 1sg)", hr:"Ja sam", pron:"ya sam", ex:"Ja sam Francuz.", grammar:"1sg biti" },
+    { fr:"Tu es (être, 2sg)", hr:"Ti si", pron:"ti si", ex:"Ti si Ivana?", grammar:"2sg biti" },
+    { fr:"Il/Elle est (être, 3sg)", hr:"On/Ona je", pron:"on / o-na yé", ex:"Ona je liječnica.", grammar:"3sg biti" },
+    { fr:"Nous sommes (être, 1pl)", hr:"Mi smo", pron:"mi smo", ex:"Mi smo turisti.", grammar:"1pl biti" },
+    { fr:"Vous êtes (être, 2pl)", hr:"Vi ste", pron:"vi sté", ex:"Vi ste iz Pariza?", grammar:"2pl biti" },
+    { fr:"Ils/Elles sont (être, 3pl)", hr:"Oni/One su", pron:"o-ni / o-né sou", ex:"Oni su Hrvati.", grammar:"3pl biti" },
+    { fr:"Accusatif masculin inanimé", hr:"-∅ (vidim grad)", pron:"grad", ex:"Vidim grad. = Je vois la ville.", grammar:"acc. masc. inan." },
+    { fr:"Accusatif féminin", hr:"-u (vidim ženu)", pron:"jé-nou", ex:"Vidim ženu. = Je vois la femme.", grammar:"acc. féminin" },
+    { fr:"Génitif (possession, 'de')", hr:"-e / -a (kuće, grada)", pron:"kou-tché / gra-da", ex:"Ulaz kuće = l'entrée de la maison.", grammar:"génitif" },
+    { fr:"Locatif ('dans', 'sur')", hr:"-u / -i (u gradu, na plaži)", pron:"gra-dou / pla-ji", ex:"Živim u gradu. (Je vis en ville.)", grammar:"locatif" },
+    { fr:"Instrumental ('avec', 'par')", hr:"-om / -em (s prijateljem)", pron:"pri-ya-tél-yèm", ex:"Idem s prijateljem. (Je vais avec un ami.)", grammar:"instrumental" },
+    { fr:"Datif ('à', 'pour')", hr:"-u / -i (daj mi)", pron:"dai mi", ex:"Daj mi to. = Donne-moi ça.", grammar:"datif" },
+    { fr:"Négation simple", hr:"Ne + verbe", pron:"né", ex:"Ne govorim hrvatski.", grammar:"adverbe négation" },
+    { fr:"Question avec li", hr:"Verbe + li", pron:"li", ex:"Govorite li engleski?", grammar:"particule interrogative" },
+    { fr:"Genre masculin (-∅)", hr:"Masculin: brod, grad, stol", pron:"brod, grad, stol", ex:"Stol je ovdje. (La table est ici.)", grammar:"nom masc." },
+    { fr:"Genre féminin (-a)", hr:"Féminin: kuća, žena, riba", pron:"kou-tcha, jé-na, ri-ba", ex:"Riba je svježa. (Le poisson est frais.)", grammar:"nom fém." },
+    { fr:"Genre neutre (-o/-e)", hr:"Neutre: more, selo, dijete", pron:"mo-ré, sé-lo", ex:"More je lijepo. (La mer est belle.)", grammar:"nom neutre" },
+    { fr:"Pluriel masculin (-i)", hr:"gradovi, stolovi", pron:"gra-do-vi, sto-lo-vi", ex:"Gradovi su veliki.", grammar:"pluriel masc." },
+    { fr:"Pluriel féminin (-e)", hr:"žene, ribe, kuće", pron:"jé-né, ri-bé", ex:"Ribe su svježe.", grammar:"pluriel fém." },
+    { fr:"Conditionnel (je voudrais)", hr:"bih + infinitif", pron:"bih", ex:"Htio bih kavu. = Je voudrais un café.", grammar:"conditionnel 1sg" },
+  ]
+};
+
+// ================================================================
+// PHRASES — 3 types: fill, multi-blank, word-order
+// Types: 'fill' (1 blank), 'multi' (2+ blanks, sequential), 'order' (word order)
+// ================================================================
+const PHRASES = [
+  // ---- TYPE: fill (1 blank, harder options) ----
+  { type:'fill', sentence:"Ima li slobodnih _____ u ovom hotelu?", answer:"soba", options:["soba","sobu","sobi","sobom","sobe","sobama"], translation:"Y a-t-il des chambres libres dans cet hôtel ?", note:"ima + génitif pluriel : soba (génitif pl. de soba). 'slobodnih soba' = des chambres libres (accord génitif)." },
+  { type:'fill', sentence:"Molim vas, _____ mi gdje je pošta.", answer:"recite", options:["recite","reći","govorite","kažite","reci","kaži"], translation:"S'il vous plaît, dites-moi où est la poste.", note:"recite = dites (impératif pluriel de reći). Aussi possible : kažite (de kazati). La nuance : reći = dire une info, govoriti = parler en général." },
+  { type:'fill', sentence:"Ne mogu se sjetiti _____ na Croatian.", answer:"riječi", options:["riječ","riječi","riječima","riječju","riječima","riječeh"], translation:"Je n'arrive pas à me souvenir du mot en croate.", note:"sjetiti se + génitif : riječI (gén. sg. de riječ = mot). Les verbes de souvenir gouvernent le génitif en croate." },
+  { type:'fill', sentence:"Kada _____ prvi put u Hrvatsku?", answer:"ste došli", options:["ste došli","ste idu","su došli","ste dolaze","dolazite","dođete"], translation:"Quand êtes-vous venu(e) pour la première fois en Croatie ?", note:"passé composé (perfekt) : auxiliaire + participe. ste došli = vous êtes venu(s). Attention à l'accord du participe." },
+  { type:'fill', sentence:"Rezervirao sam sobu _____ dvije noći.", answer:"za", options:["za","od","do","u","na","pri"], translation:"J'ai réservé une chambre pour deux nuits.", note:"za + accusatif exprime la durée ou la destination : za dvije noći (pour deux nuits)." },
+  { type:'fill', sentence:"Mogu li platiti _____?", answer:"karticom", options:["karticu","kartica","karticom","kartice","kartici","kartom"], translation:"Puis-je payer par carte ?", note:"platiti + instrumental : karticom (instrumental de kartica). L'instrumental s'emploie pour l'instrument/moyen de l'action." },
+  { type:'fill', sentence:"Koliko _____ do centra pješice?", answer:"traje", options:["traje","košta","ima","jest","je","treba"], translation:"Combien de temps faut-il pour aller au centre à pied ?", note:"trajati = durer. Koliko traje? = Combien de temps ça prend? À ne pas confondre avec koštati (coûter)." },
+  { type:'fill', sentence:"Volim putovati, ali ne volim _____ pakirati kofere.", answer:"slagati", options:["slagati","slažem","slažeš","složiti","složio","slagala"], translation:"J'aime voyager mais je n'aime pas faire les valises.", note:"voljeti + infinitif = aimer + infinitif. slagati = faire/plier, pakirati = emballer. Les deux verbes sont imperfectifs." },
+
+  // ---- TYPE: multi (2 blanks) ----
+  { type:'multi', sentence:"Ja _____ iz Francuske i _____ u Parizu.", answers:["sam","živim"], blanks:2, optionSets:[["sam","si","je","smo"],["živim","živiš","živi","živimo"]], translation:"Je suis de France et j'habite à Paris.", note:"biti (sam = 1sg) + živjeti (živim = 1sg). Deux verbes différents, même sujet 'ja'." },
+  { type:'multi', sentence:"Htio _____ rezervirati stol za _____ osobe.", answers:["bih","dvije"], blanks:2, optionSets:[["bih","bi","ću","budem"],["dvije","dva","dvoje","dvojica"]], translation:"Je voudrais réserver une table pour deux personnes.", note:"bih = conditionnel 1sg de htjeti. dvije osobe (acc.) = deux personnes (fém.), dva = pour les masculins et neutres." },
+  { type:'multi', sentence:"Ne _____ što kaže, _____ govorim dovoljno brzo.", answers:["razumijem","ne"], blanks:2, optionSets:[["razumijem","razumiješ","razumije","razumijemo"],["ne","ni","bez","nije"]], translation:"Je ne comprends pas ce qu'il dit, je ne parle pas assez vite.", note:"ne razumijem = je ne comprends pas. ne + govorim = négation du verbe. La négation 'ne' se place toujours juste avant le verbe." },
+  { type:'multi', sentence:"_____ ste večerali i _____ vam je bilo?", answers:["Gdje","kako"], blanks:2, optionSets:[["Gdje","Kada","Kamo","Zašto"],["kako","što","koliko","gdje"]], translation:"Où avez-vous dîné et comment c'était ?", note:"gdje = où (position). kako vam je bilo? = comment c'était pour vous ? (bilo = était, passé de biti)." },
+  { type:'multi', sentence:"Idem _____ plažu jer _____ lijepo vrijeme.", answers:["na","je"], blanks:2, optionSets:[["na","u","od","za"],["je","ima","bude","biti"]], translation:"Je vais à la plage car il fait beau.", note:"na + accusatif (plažu) = direction vers un lieu ouvert. ima/je lijepo vrijeme = il fait beau (litt. il y a/c'est beau temps)." },
+  { type:'multi', sentence:"On _____ učiti, ali _____ uvijek umoran.", answers:["voli","je"], blanks:2, optionSets:[["voli","volim","voliš","volimo"],["je","sam","si","smo"]], translation:"Il aime apprendre mais il est toujours fatigué.", note:"voli = 3sg de voljeti. je = 3sg de biti. Attention : 'on je' (clitique je se place après le premier groupe accentué)." },
+
+  // ---- TYPE: order (word order) ----
+  { type:'order', sentence:"Remettez dans l'ordre :", words:["sam","Ja","turistkinja","Francuska","iz"], correct:"Ja sam turistkinja iz Francuske.", translation:"Je suis une touriste de France.", note:"L'ordre de base en croate : Sujet (Ja) + Verbe (sam) + Attribut (turistkinja) + Complément. Les clitiques (sam) viennent en 2ème position." },
+  { type:'order', sentence:"Remettez dans l'ordre :", words:["možete","Govorite","engleski","li"], correct:"Govorite li engleski možete?", realCorrect:"Govorite li engleski?", translation:"Parlez-vous anglais ?", note:"Li se place immédiatement après le verbe conjugué pour former une question. Govorite li = parlez-vous ?" },
+  { type:'order', sentence:"Remettez dans l'ordre :", words:["kavu","pijem","Svako","jutro"], correct:"Svako jutro pijem kavu.", translation:"Je bois un café chaque matin.", note:"svako jutro (chaque matin) est souvent placé en tête pour l'emphase. L'accusatif kavu (de kava) suit le verbe." },
+  { type:'order', sentence:"Remettez dans l'ordre :", words:["do","Idemo","centra","ravno"], correct:"Idemo ravno do centra.", translation:"Nous allons tout droit jusqu'au centre.", note:"ravno (tout droit) + do + génitif (centra = de centar). do + génitif = jusqu'à." },
+  { type:'order', sentence:"Remettez dans l'ordre :", words:["sobu","slobodnu","li","Imate"], correct:"Imate li slobodnu sobu?", translation:"Avez-vous une chambre libre ?", note:"Imate li = avez-vous ? (particule li après le verbe). slobodnu sobu = accusatif fém. (chambre libre, objet direct)." },
+];
+
+// ================================================================
+// VERB CONJUGATIONS (grammar panel)
+// ================================================================
+const VERB_CONJUGATIONS = {
+  "être (je suis)":{ title:"biti — être", sub:"Verbe irrégulier · auxiliaire principal", note:"biti forme aussi le passé composé : radio sam (j'ai travaillé).", rows:[["Ja","sam","Ja sam Francuz."],["Ti","si","Ti si moja prijateljica."],["On/Ona","je","Ona je liječnica."],["Mi","smo","Mi smo turisti."],["Vi","ste","Vi ste iz Pariza?"],["Oni/One","su","Oni su ovdje."]] },
+  "avoir (j'ai)":{ title:"imati — avoir", sub:"Verbe régulier -ati", note:"ima = il y a / il a. Ima li mjesta? = Y a-t-il de la place?", rows:[["Ja","imam","Imam rezervaciju."],["Ti","imaš","Imaš li kartu?"],["On/Ona","ima","Ima slobodnih mjesta."],["Mi","imamo","Imamo dvoje djece."],["Vi","imate","Imate li pitanja?"],["Oni/One","imaju","Imaju puno posla."]] },
+  "vouloir (je veux)":{ title:"htjeti — vouloir", sub:"Verbe irrégulier + futur", note:"Forme courte (future) : ću/ćeš/će/ćemo/ćete/će. Htio bih = je voudrais (conditionnel).", rows:[["Ja","hoću","Hoću kavu, molim."],["Ti","hoćeš","Hoćeš li ići?"],["On/Ona","hoće","Ona hoće ostati."],["Mi","hoćemo","Hoćemo rezervirati."],["Vi","hoćete","Što hoćete naručiti?"],["Oni/One","hoće","Hoće doći sutra."]] },
+  "pouvoir (je peux)":{ title:"moći — pouvoir", sub:"Verbe modal irrégulier", note:"Mogu li? = Puis-je? Može li se? = Est-ce possible?", rows:[["Ja","mogu","Mogu li pomoći?"],["Ti","možeš","Možeš doći?"],["On/Ona","može","Može platiti karticom."],["Mi","možemo","Možemo rezervirati."],["Vi","možete","Možete li sporije?"],["Oni/One","mogu","Oni mogu doći."]] },
+  "aller (je vais)":{ title:"ići — aller", sub:"Verbe de mouvement irrégulier", note:"ići + na/u + accusatif : Idem na plažu (plage) · Idem u hotel (hôtel).", rows:[["Ja","idem","Idem na more."],["Ti","ideš","Kamo ideš?"],["On/Ona","ide","Ide u restoran."],["Mi","idemo","Idemo zajedno!"],["Vi","idete","Idete li na izlet?"],["Oni/One","idu","Idu na odmor."]] },
+  "parler (je parle)":{ title:"govoriti — parler", sub:"Modèle de référence : -iti → -im/-iš/-i", note:"Tous les verbes en -iti suivent ce schéma. -iti → -im/-iš/-i/-imo/-ite/-e.", rows:[["Ja","govorim","Govorim malo hrvatski."],["Ti","govoriš","Govoriš li engleski?"],["On/Ona","govori","Govori tečno."],["Mi","govorimo","Govorimo tiho."],["Vi","govorite","Govorite sporije!"],["Oni/One","govore","Govore tri jezika."]] },
+  "comprendre (je comprends)":{ title:"razumjeti — comprendre", sub:"Verbe -jeti → présent -ijem/-iješ", note:"Ne razumijem, možete li ponoviti? (Je ne comprends pas, pouvez-vous répéter?)", rows:[["Ja","razumijem","Ne razumijem."],["Ti","razumiješ","Razumiješ li?"],["On/Ona","razumije","Razumije sve."],["Mi","razumijemo","Razumijemo situaciju."],["Vi","razumijete","Razumijete li?"],["Oni/One","razumiju","Razumiju nas."]] },
+  "manger (je mange)":{ title:"jesti — manger", sub:"Verbe irrégulier · présent en -dem", note:"Ručak = déjeuner · večera = dîner · doručak = petit-déjeuner.", rows:[["Ja","jedem","Jedem ručak sada."],["Ti","jedeš","Što jedeš?"],["On/Ona","jede","Jede ribu."],["Mi","jedemo","Jedemo zajedno."],["Vi","jedete","Jedete li meso?"],["Oni/One","jedu","Jedu na terasi."]] },
+  "boire (je bois)":{ title:"piti — boire", sub:"Verbe -iti → présent -ijem/-iješ", note:"Pijemo na zdravlje! = À votre santé! pijem/piješ/pije/pijemo/pijete/piju.", rows:[["Ja","pijem","Pijem kavu."],["Ti","piješ","Piješ li vino?"],["On/Ona","pije","Pije čaj."],["Mi","pijemo","Pijemo!"],["Vi","pijete","Što pijete?"],["Oni/One","piju","Piju pivo."]] },
+  "aimer (j'aime)":{ title:"voljeti — aimer", sub:"Verbe -jeti → présent -im/-iš", note:"Volim te = je t'aime. Contraire : mrzim (je déteste). Suivi de l'infinitif ou acc.", rows:[["Ja","volim","Volim more."],["Ti","voliš","Voliš li Hrvatsku?"],["On/Ona","voli","Voli čitati."],["Mi","volimo","Volimo putovati."],["Vi","volite","Volite li jazz?"],["Oni/One","vole","Vole se šetati."]] },
+  "savoir (je sais)":{ title:"znati — savoir", sub:"Verbe régulier -ati → présent -am/-aš", note:"Ne znam = je ne sais pas. Znaš li? = Sais-tu? znati = savoir un fait (≠ moći = pouvoir).", rows:[["Ja","znam","Znam malo."],["Ti","znaš","Znaš li gdje?"],["On/Ona","zna","Zna pet jezika."],["Mi","znamo","Znamo kamo."],["Vi","znate","Znate li adresu?"],["Oni/One","znaju","Znaju sve."]] },
+  "voir (je vois)":{ title:"vidjeti — voir", sub:"Verbe -eti → présent -im/-iš", note:"Vidimo se! = À bientôt (litt. on se voit). Vidim = je vois + accusatif direct.", rows:[["Ja","vidim","Vidim more!"],["Ti","vidiš","Vidiš li otok?"],["On/Ona","vidi","Vidi sve."],["Mi","vidimo","Vidimo se sutra!"],["Vi","vidite","Vidite li razliku?"],["Oni/One","vide","Vide nas."]] },
+  "venir (je viens)":{ title:"doći — venir (perfectif)", sub:"Préfixe do- + ići", note:"doći = arriver (une fois, perfectif). dolaziti = venir (répété, imperfectif). dođem/dođeš/dođe...", rows:[["Ja","dođem","Dođem sutra."],["Ti","dođeš","Dođeš li?"],["On/Ona","dođe","Dođe u 8."],["Mi","dođemo","Dođemo zajedno."],["Vi","dođete","Dođete li?"],["Oni/One","dođu","Dođu navečer."]] },
+  "rester (je reste)":{ title:"ostati — rester (perfectif)", sub:"ostajati = imperfectif (répété)", note:"Ostajem = je reste (habituellement). Ostat ću = je vais rester (futur).", rows:[["Ja","ostajem","Ostajem tjedan dana."],["Ti","ostaje","Ostaje ovdje."],["On/Ona","ostaje","Ostaje kod kuće."],["Mi","ostajemo","Ostajemo još dan."],["Vi","ostajete","Ostajete li?"],["Oni/One","ostaju","Ostaju u hotelu."]] },
+  "travailler (je travaille)":{ title:"raditi — travailler", sub:"Verbe -iti type régulier", note:"radim = je travaille / je fais. Što radiš? = Que fais-tu? (aussi : qu'est-ce que tu fais?)", rows:[["Ja","radim","Radim u hotelu."],["Ti","radiš","Što radiš?"],["On/Ona","radi","Radi puno."],["Mi","radimo","Radimo skupa."],["Vi","radite","Radite li?"],["Oni/One","rade","Rade svaki dan."]] },
+  "habiter (j'habite)":{ title:"živjeti — vivre/habiter", sub:"Verbe -jeti → présent -im/-iš", note:"živjeti = vivre + lieu. Živim u Parizu = j'habite à Paris (locatif).", rows:[["Ja","živim","Živim u Parizu."],["Ti","živiš","Gdje živiš?"],["On/Ona","živi","Živi u Splitu."],["Mi","živimo","Živimo ovdje."],["Vi","živite","Živite li blizu?"],["Oni/One","žive","Žive na otoku."]] },
+  "acheter (j'achète)":{ title:"kupiti — acheter (perfectif)", sub:"kupovati = imperfectif (habitude)", note:"kupim (perfectif, une fois) / kupujem (imperfectif, en cours). + accusatif direct.", rows:[["Ja","kupim","Kupim suvenire."],["Ti","kupiš","Što kupiš?"],["On/Ona","kupi","Kupi kruh."],["Mi","kupimo","Kupimo darove."],["Vi","kupite","Kupite li?"],["Oni/One","kupe","Kupe ulaznice."]] },
+  "apprendre (j'apprends)":{ title:"učiti — apprendre/étudier", sub:"Verbe -iti type régulier", note:"učiti = apprendre / étudier. učim hrvatski = j'apprends le croate (+accusatif).", rows:[["Ja","učim","Učim hrvatski."],["Ti","učiš","Što učiš?"],["On/Ona","uči","Uči svaki dan."],["Mi","učimo","Učimo zajedno."],["Vi","učite","Učite li?"],["Oni/One","uče","Uče jezik."]] },
+  "lire (je lis)":{ title:"čitati — lire", sub:"Verbe -ati → présent -am/-aš", note:"čitam + accusatif = lire qqch. Čitam knjigu (je lis un livre). Što čitaš? = Que lis-tu?", rows:[["Ja","čitam","Čitam knjigu."],["Ti","čitaš","Što čitaš?"],["On/Ona","čita","Čita novine."],["Mi","čitamo","Čitamo zajedno."],["Vi","čitate","Čitate li?"],["Oni/One","čitaju","Čitaju na terasi."]] },
+  "écrire (j'écris)":{ title:"pisati — écrire", sub:"Verbe -ati → présent -šem/-šeš", note:"pisati → pišem (alternance s/š). Pišem razglednicu (j'écris une carte postale).", rows:[["Ja","pišem","Pišem razglednicu."],["Ti","pišeš","Što pišeš?"],["On/Ona","piše","Piše mail."],["Mi","pišemo","Pišemo pismo."],["Vi","pišete","Pišete li?"],["Oni/One","pišu","Pišu priču."]] },
+};
+
+// Grammar panels for non-verb categories
+const GRAMMAR_PANELS = {
+  "Grammaire":{ title:"Déclinaison de biti (être)", sub:"Présent indicatif", rows:[["Ja","sam","Ja sam student"],["Ti","si","Ti si Ivana"],["On/Ona","je","Ona je liječnica"],["Mi","smo","Mi smo ovdje"],["Vi","ste","Vi ste gosti"],["Oni/One","su","Oni su prijatelji"]] },
+  "Voyage":{ title:"Prépositions de lieu", sub:"Na vs U · od · do", rows:[["na + acc.","direction lieu ouvert","Idem na plažu"],["na + loc.","position lieu ouvert","Sam na plaži"],["u + acc.","direction lieu fermé","Idem u hotel"],["u + loc.","position lieu fermé","Sam u hotelu"],["od + gén.","origine","Dolazim od mora"],["do + gén.","jusqu'à","Idem do centra"]] },
+  "Quotidien":{ title:"Adverbes de fréquence", sub:"Toujours → jamais", rows:[["uvijek","toujours","Uvijek pijem kavu."],["često","souvent","Često idem van."],["ponekad","parfois","Ponekad čitam."],["rijetko","rarement","Rijetko gledam TV."],["nikad","jamais","Nikad ne kasnim."]] },
+};
+
+// ================================================================
+// STATE
+// ================================================================
+let mode='flashcard', cat='Salutations', dir='fr2hr';
+let cardIdx=0, cardFlipped=false;
+let xp=0, streak=0, correct=0, wrong=0;
+let mastery={};
+
+let chronoItem=null, chronoTimer=null, chronoTimeLeft=10, chronoAnswered=false;
+let typingItem=null, typingAnswered=false, hintsUsed=0;
+let phraseIdx=0, phraseAnswered=false, shuffledPhrases=[];
+let phMultiState=[], phCurrentBlank=0;
+let phOrderPlaced=[], phOrderWords=[];
+let matchItems=[], matchSelected=null, matchSelType=null;
+let matchPairsFound=0, matchTimer=null, matchTimeLeft=60;
+let listenItem=null, listenAnswered=false;
+
+const LEVELS=[{name:"Početnik",min:0},{name:"Učenik",min:100},{name:"Napredni",min:300},{name:"Stručnjak",min:600},{name:"Majstor",min:1000}];
+
+// ================================================================
+// INIT
+// ================================================================
+function init(){
+  initTTS();
+  buildCategories();
+  loadFlashcard();
+  updateStats();
+}
+
+function buildCategories(){
+  const row=document.getElementById('cat-row');
+  row.innerHTML='';
+  const icons={"Salutations":"👋","Verbes essentiels":"🔄","Quotidien":"☀️","Voyage":"⚓","Grammaire":"📐"};
+  Object.keys(VOCAB).forEach(c=>{
+    const btn=document.createElement('button');
+    btn.className='cat-btn'+(c===cat?' active':'');
+    const pct=getMastery(c);
+    const star=pct>=80?'⭐':pct>=50?'✦':'';
+    btn.innerHTML=`${icons[c]||''} ${c}<span class="cat-mastery">${star}</span>`;
+    btn.onclick=()=>{ cat=c; cardIdx=0; document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); reloadCurrentMode(); };
+    row.appendChild(btn);
+  });
+}
+
+function getMastery(c){
+  const items=VOCAB[c];
+  if(!items?.length) return 0;
+  return Math.round(items.filter(it=>mastery[it.fr]===1).length/items.length*100);
+}
+
+function reloadCurrentMode(){
+  if(mode==='flashcard'){ cardFlipped=false; loadFlashcard(); }
+  else if(mode==='listen'){ loadListen(); renderGrammarPanel(null); }
+  else if(mode==='chrono'){ stopChronoTimer(); loadChrono(); renderGrammarPanel(null); }
+  else if(mode==='typing'){ loadTyping(); renderGrammarPanel(null); }
+  else if(mode==='phrases'){ loadPhrase(); renderGrammarPanel(null); }
+  else if(mode==='match'){ startMatchRound(); renderGrammarPanel(null); }
+}
+
+function switchMode(m){
+  mode=m;
+  stopChronoTimer(); stopMatchTimer();
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`[data-mode="${m}"]`).classList.add('active');
+  ['flashcard','listen','chrono','typing','phrases','match'].forEach(id=>{
+    document.getElementById('mode-'+id).style.display=id===m?'':'none';
+  });
+  document.getElementById('direction-row').style.display=(m==='phrases'||m==='match'||m==='listen')?'none':'';
+  reloadCurrentMode();
+}
+
+function setDir(d){
+  dir=d;
+  document.querySelectorAll('.dir-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`[data-dir="${d}"]`).classList.add('active');
+  reloadCurrentMode();
+}
+
+// ================================================================
+// FLASHCARD
+// ================================================================
+function loadFlashcard(){
+  const items=VOCAB[cat];
+  const item=items[cardIdx];
+  document.getElementById('flashcard').classList.remove('flipped');
+  cardFlipped=false;
+
+  const q=dir==='fr2hr'?item.fr:item.hr;
+  const a=dir==='fr2hr'?item.hr:item.fr;
+  document.getElementById('fc-lang-front').textContent=dir==='fr2hr'?'🇫🇷 Français':'🇭🇷 Croate';
+  document.getElementById('fc-front-word').textContent=q;
+  document.getElementById('fc-lang-back').textContent=dir==='fr2hr'?'🇭🇷 Croate':'🇫🇷 Français';
+  document.getElementById('fc-back-word').textContent=a;
+  document.getElementById('fc-pron').textContent=dir==='fr2hr'?`[ ${item.pron} ]`:'';
+  document.getElementById('fc-example').textContent=item.ex||'';
+  const gtag=document.getElementById('fc-gtag');
+  if(item.grammar){ gtag.textContent=item.grammar; gtag.style.display=''; } else gtag.style.display='none';
+  document.getElementById('fc-info').textContent=`${cardIdx+1} / ${items.length}`;
+  document.getElementById('sa-no').disabled=true; document.getElementById('sa-yes').disabled=true;
+
+  const mdot=document.getElementById('mastery-row'); mdot.innerHTML='';
+  items.forEach((it,i)=>{ const d=document.createElement('div'); d.className='mastery-dot'+(mastery[it.fr]===1?' known':mastery[it.fr]===-1?' unknown':''); if(i===cardIdx)d.style.transform='scale(1.4)'; mdot.appendChild(d); });
+  renderGrammarPanel(item);
+}
+
+function flipCard(){
+  if(cardFlipped) return;
+  document.getElementById('flashcard').classList.add('flipped');
+  cardFlipped=true;
+  document.getElementById('sa-no').disabled=false; document.getElementById('sa-yes').disabled=false;
+  // audio only on manual click (speak button)
+}
+
+function selfAssess(knew){
+  const item=VOCAB[cat][cardIdx];
+  mastery[item.fr]=knew?1:-1;
+  if(knew){ addXP(5); streak++; showToast('✓ Bien noté ! +5 XP'); } else streak=0;
+  updateStats(); buildCategories();
+  setTimeout(()=>nextCard(),400);
+}
+function nextCard(){ cardIdx=(cardIdx+1)%VOCAB[cat].length; loadFlashcard(); }
+function prevCard(){ cardIdx=(cardIdx-1+VOCAB[cat].length)%VOCAB[cat].length; loadFlashcard(); }
+
+// ================================================================
+// LISTEN MODE
+// ================================================================
+function loadListen(){
+  const items=VOCAB[cat];
+  listenItem=items[Math.floor(Math.random()*items.length)];
+  listenAnswered=false;
+
+  document.getElementById('listen-hidden').textContent='• • • •';
+  document.getElementById('listen-ctx').textContent='';
+  document.getElementById('listen-feedback').textContent='';
+  document.getElementById('listen-feedback').className='feedback-bar';
+  document.getElementById('listen-next').disabled=true;
+  document.getElementById('listen-play-btn').classList.remove('playing');
+
+  // Build options
+  let pool=[...items].filter(i=>i!==listenItem).sort(()=>Math.random()-.5).slice(0,3);
+  let opts=[listenItem,...pool].sort(()=>Math.random()-.5);
+
+  const container=document.getElementById('listen-opts');
+  container.innerHTML='';
+  opts.forEach(opt=>{
+    const btn=document.createElement('button');
+    btn.className='opt-btn';
+    btn.textContent=opt.fr; // always guess French translation
+    btn.onclick=()=>answerListen(btn,opt===listenItem);
+    container.appendChild(btn);
+  });
+
+  // auto-play
+  setTimeout(()=>playListenAudio(),300);
+}
+
+function playListenAudio(){
+  if(!listenItem) return;
+  const btn=document.getElementById('listen-play-btn');
+  btn.classList.add('playing');
+  speak(listenItem.hr, btn);
+}
+
+function answerListen(btn, isCorrect){
+  if(listenAnswered) return;
+  listenAnswered=true;
+  document.getElementById('listen-hidden').textContent=listenItem.hr;
+  document.getElementById('listen-ctx').textContent=`[ ${listenItem.pron} ] — ${listenItem.ex||''}`;
+  const fb=document.getElementById('listen-feedback');
+  if(isCorrect){
+    btn.classList.add('correct');
+    correct++; streak++; addXP(12);
+    fb.innerHTML=`✅ Correct ! <span class="xp-flash">+12 XP</span>`;
+    fb.className='feedback-bar good';
+    if(streak%5===0) launchConfetti();
+  } else {
+    btn.classList.add('wrong');
+    wrong++; streak=0;
+    document.querySelectorAll('#listen-opts .opt-btn').forEach(b=>{ if(b.textContent===listenItem.fr)b.classList.add('correct'); });
+    fb.textContent=`❌ C'était : ${listenItem.fr}`;
+    fb.className='feedback-bar bad';
+  }
+  document.querySelectorAll('#listen-opts .opt-btn').forEach(b=>b.disabled=true);
+  document.getElementById('listen-next').disabled=false;
+  updateStats(); buildCategories();
+}
+function nextListen(){ loadListen(); }
+
+// ================================================================
+// CHRONO QUIZ
+// ================================================================
+function loadChrono(){
+  stopChronoTimer();
+  const items=VOCAB[cat];
+  chronoItem=items[Math.floor(Math.random()*items.length)];
+  chronoAnswered=false;
+
+  const q=dir==='fr2hr'?chronoItem.fr:chronoItem.hr;
+  document.getElementById('qz-dir-label').textContent=dir==='fr2hr'?'TRADUIRE EN CROATE 🇭🇷':'TRADUIRE EN FRANÇAIS 🇫🇷';
+  document.getElementById('qz-word').textContent=q;
+  document.getElementById('qz-ctx').textContent=chronoItem.ex||'';
+  const ghint=document.getElementById('qz-ghint');
+  if(chronoItem.grammar&&dir==='fr2hr'){ ghint.textContent='💡 '+chronoItem.grammar; ghint.style.display=''; } else ghint.style.display='none';
+  // speak button only for hr2fr (word is Croatian)
+  const spkBtn=document.getElementById('qz-speak');
+  if(dir==='hr2fr'){ spkBtn.style.display=''; } else spkBtn.style.display='none';
+  document.getElementById('qz-feedback').textContent='';
+  document.getElementById('qz-feedback').className='feedback-bar';
+  document.getElementById('qz-next').disabled=true;
+
+  let pool=[...items].filter(i=>i!==chronoItem).sort(()=>Math.random()-.5);
+  let opts=[chronoItem,...pool.slice(0,3)].sort(()=>Math.random()-.5);
+  const container=document.getElementById('qz-opts'); container.innerHTML='';
+  opts.forEach(opt=>{ const btn=document.createElement('button'); btn.className='opt-btn'; btn.textContent=dir==='fr2hr'?opt.hr:opt.fr; btn.onclick=()=>answerChrono(btn,opt===chronoItem); container.appendChild(btn); });
+
+  chronoTimeLeft=10;
+  updateTimerRing(10,10);
+  chronoTimer=setInterval(()=>{ chronoTimeLeft-=.1; updateTimerRing(Math.max(0,chronoTimeLeft),10); if(chronoTimeLeft<=0){ clearInterval(chronoTimer); if(!chronoAnswered)timeoutChrono(); } },100);
+}
+
+function updateTimerRing(t,max){
+  const pct=t/max, c=188.5;
+  const fill=document.getElementById('timer-fill'), txt=document.getElementById('timer-text');
+  fill.style.strokeDashoffset=c*(1-pct);
+  fill.style.stroke=pct>.5?'var(--sea2)':pct>.25?'var(--gold)':'var(--error)';
+  txt.textContent=Math.ceil(t); txt.style.color=pct>.25?'var(--text)':'var(--error)';
+}
+
+function timeoutChrono(){
+  chronoAnswered=true; streak=0; wrong++;
+  const fb=document.getElementById('qz-feedback');
+  fb.textContent=`⏱️ Temps ! Réponse : ${dir==='fr2hr'?chronoItem.hr:chronoItem.fr}`;
+  fb.className='feedback-bar bad';
+  document.querySelectorAll('#qz-opts .opt-btn').forEach(b=>{ if(b.textContent===(dir==='fr2hr'?chronoItem.hr:chronoItem.fr))b.classList.add('correct'); b.disabled=true; });
+  document.getElementById('qz-next').disabled=false;
+  updateStats();
+}
+
+function answerChrono(btn,isCorrect){
+  if(chronoAnswered) return;
+  chronoAnswered=true; stopChronoTimer();
+  const fb=document.getElementById('qz-feedback');
+  if(isCorrect){
+    btn.classList.add('correct');
+    const bonus=chronoTimeLeft>7?25:chronoTimeLeft>4?15:10;
+    correct++; streak++; mastery[chronoItem.fr]=1; addXP(bonus);
+    fb.innerHTML=streak>=3?`🔥 ${streak} en série ! <span class="xp-flash">+${bonus} XP</span>`:`✅ Correct ! <span class="xp-flash">+${bonus} XP</span>`;
+    fb.className='feedback-bar good';
+    if(streak%5===0) launchConfetti();
+  } else {
+    btn.classList.add('wrong'); wrong++; streak=0; mastery[chronoItem.fr]=-1;
+    document.querySelectorAll('#qz-opts .opt-btn').forEach(b=>{ if(b.textContent===(dir==='fr2hr'?chronoItem.hr:chronoItem.fr))b.classList.add('correct'); });
+    fb.textContent=`❌ Raté ! Réponse : ${dir==='fr2hr'?chronoItem.hr:chronoItem.fr}  [ ${chronoItem.pron} ]`;
+    fb.className='feedback-bar bad';
+  }
+  document.querySelectorAll('#qz-opts .opt-btn').forEach(b=>b.disabled=true);
+  document.getElementById('qz-next').disabled=false;
+  updateStats(); buildCategories();
+}
+function nextChrono(){ loadChrono(); }
+function stopChronoTimer(){ if(chronoTimer){ clearInterval(chronoTimer); chronoTimer=null; } }
+
+// ================================================================
+// TYPING
+// ================================================================
+function loadTyping(){
+  const items=VOCAB[cat];
+  typingItem=items[Math.floor(Math.random()*items.length)];
+  typingAnswered=false; hintsUsed=0;
+  document.getElementById('tp-direction').textContent=dir==='fr2hr'?'ÉCRIRE EN CROATE 🇭🇷':'ÉCRIRE EN FRANÇAIS 🇫🇷';
+  document.getElementById('tp-word').textContent=dir==='fr2hr'?typingItem.fr:typingItem.hr;
+  document.getElementById('tp-ctx').textContent=typingItem.ex||'';
+  const spk=document.getElementById('tp-speak');
+  if(dir==='hr2fr'){ spk.style.display=''; } else spk.style.display='none';
+  document.getElementById('tp-feedback').textContent='';
+  document.getElementById('tp-feedback').className='feedback-bar';
+  document.getElementById('tp-next').disabled=true;
+  document.getElementById('hint-text').textContent='';
+  document.getElementById('type-reveal').style.display='none';
+  const input=document.getElementById('type-input');
+  input.value=''; input.className='type-input'; input.disabled=false;
+  setTimeout(()=>input.focus(),100);
+}
+
+function showHint(){
+  if(!typingItem) return;
+  const target=dir==='fr2hr'?typingItem.hr:typingItem.fr;
+  hintsUsed++;
+  document.getElementById('hint-text').textContent=target.substring(0,hintsUsed)+target.substring(hintsUsed).replace(/[^ ]/g,'_');
+}
+
+function submitTyping(){
+  if(typingAnswered) return;
+  const input=document.getElementById('type-input');
+  const val=input.value.trim();
+  const target=dir==='fr2hr'?typingItem.hr:typingItem.fr;
+  if(!val) return;
+  typingAnswered=true;
+  const dist=levenshtein(normalize(val),normalize(target));
+  const isCorrect=dist===0, isFuzzy=dist<=2&&target.length>4;
+  const fb=document.getElementById('tp-feedback');
+  input.disabled=true; document.getElementById('tp-next').disabled=false;
+  if(isCorrect||isFuzzy){
+    input.classList.add('correct-anim');
+    const pts=hintsUsed>0?8:isCorrect?15:10;
+    correct++; streak++; mastery[typingItem.fr]=1; addXP(pts);
+    fb.innerHTML=isCorrect?`✅ Parfait ! <span class="xp-flash">+${pts} XP</span>`:`✓ Presque ! (${target}) <span class="xp-flash">+${pts} XP</span>`;
+    fb.className='feedback-bar good';
+    if(streak%5===0) launchConfetti();
+  } else {
+    input.classList.add('wrong-anim'); wrong++; streak=0; mastery[typingItem.fr]=-1;
+    const rev=document.getElementById('type-reveal'); rev.textContent=target; rev.style.display='';
+    fb.textContent=`❌ Réponse : ${dir==='fr2hr'?`${typingItem.hr} [ ${typingItem.pron} ]`:typingItem.fr}`;
+    fb.className='feedback-bar bad';
+  }
+  updateStats(); buildCategories();
+}
+function nextTyping(){ loadTyping(); }
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('type-input').addEventListener('keydown',e=>{ if(e.key==='Enter') submitTyping(); });
+});
+
+// ================================================================
+// PHRASES MODE
+// ================================================================
+function loadPhrase(){
+  if(!shuffledPhrases.length||phraseIdx>=shuffledPhrases.length){
+    shuffledPhrases=[...PHRASES].sort(()=>Math.random()-.5);
+    phraseIdx=0;
+  }
+  const ph=shuffledPhrases[phraseIdx];
+  phraseAnswered=false; phMultiState=[]; phCurrentBlank=0; phOrderPlaced=[]; phOrderWords=[];
+
+  document.getElementById('ph-opts').innerHTML='';
+  document.getElementById('ph-feedback').textContent='';
+  document.getElementById('ph-feedback').className='feedback-bar';
+  document.getElementById('ph-next').disabled=true;
+  document.getElementById('ph-submit').style.display='none';
+  document.getElementById('ph-blank-status').textContent='';
+  document.getElementById('ph-note').style.display='none';
+  document.getElementById('ph-word-order-answer').style.display='none';
+  document.getElementById('ph-translation').textContent='🇫🇷 '+ph.translation;
+
+  // Badge
+  const badge=document.getElementById('ph-type-badge');
+  if(ph.type==='fill'){ badge.className='phrase-type-badge badge-fill'; badge.textContent='Compléter'; }
+  else if(ph.type==='multi'){ badge.className='phrase-type-badge badge-multi'; badge.textContent='Double blanc'; }
+  else{ badge.className='phrase-type-badge badge-order'; badge.textContent='Ordre des mots'; }
+
+  if(ph.type==='fill') loadFillPhrase(ph);
+  else if(ph.type==='multi') loadMultiPhrase(ph);
+  else loadOrderPhrase(ph);
+}
+
+function loadFillPhrase(ph){
+  const sentHtml=ph.sentence.replace('_____',`<span class="blank" id="blank-0">_____</span>`);
+  document.getElementById('ph-sentence').innerHTML=sentHtml;
+  const opts=document.getElementById('ph-opts');
+  const shuffled=[...ph.options].sort(()=>Math.random()-.5);
+  shuffled.forEach(opt=>{
+    const btn=document.createElement('button'); btn.className='phrase-opt'; btn.textContent=opt;
+    btn.onclick=()=>answerFillPhrase(btn,opt===ph.answer,ph);
+    opts.appendChild(btn);
+  });
+}
+
+function answerFillPhrase(btn,isCorrect,ph){
+  if(phraseAnswered) return;
+  phraseAnswered=true;
+  const blank=document.getElementById('blank-0');
+  blank.textContent=ph.answer;
+  blank.className='blank '+(isCorrect?'filled-correct':'filled-wrong');
+  const fb=document.getElementById('ph-feedback');
+  const note=document.getElementById('ph-note');
+  note.textContent='📖 '+ph.note; note.style.display='';
+  if(isCorrect){
+    btn.classList.add('correct'); correct++; streak++; addXP(12);
+    fb.innerHTML=`✅ Correct ! <span class="xp-flash">+12 XP</span>`; fb.className='feedback-bar good';
+    if(streak%5===0) launchConfetti();
+  } else {
+    btn.classList.add('wrong'); wrong++; streak=0;
+    document.querySelectorAll('#ph-opts .phrase-opt').forEach(b=>{ if(b.textContent===ph.answer)b.classList.add('correct'); });
+    fb.textContent='❌ Raté !'; fb.className='feedback-bar bad';
+  }
+  document.querySelectorAll('#ph-opts .phrase-opt').forEach(b=>b.disabled=true);
+  document.getElementById('ph-next').disabled=false;
+  updateStats();
+}
+
+function loadMultiPhrase(ph){
+  let sent=ph.sentence;
+  let idx=0;
+  const parts=sent.split('_____');
+  let html='';
+  parts.forEach((part,i)=>{ html+=part; if(i<parts.length-1) html+=`<span class="blank" id="blank-${i}">_____</span>`; });
+  document.getElementById('ph-sentence').innerHTML=html;
+  phCurrentBlank=0;
+  document.getElementById('ph-blank-status').textContent=`Blanc ${phCurrentBlank+1} sur ${ph.blanks}`;
+  buildMultiOpts(ph,0);
+}
+
+function buildMultiOpts(ph,blankIdx){
+  const opts=document.getElementById('ph-opts'); opts.innerHTML='';
+  const shuffled=[...ph.optionSets[blankIdx]].sort(()=>Math.random()-.5);
+  shuffled.forEach(opt=>{
+    const btn=document.createElement('button'); btn.className='phrase-opt'; btn.textContent=opt;
+    btn.onclick=()=>answerMultiBlank(btn,opt,opt===ph.answers[blankIdx],ph,blankIdx);
+    opts.appendChild(btn);
+  });
+}
+
+function answerMultiBlank(btn,val,isCorrect,ph,blankIdx){
+  if(phraseAnswered) return;
+  const blank=document.getElementById(`blank-${blankIdx}`);
+  blank.textContent=val;
+  if(isCorrect){
+    blank.className='blank filled-correct';
+    phMultiState[blankIdx]=true;
+    correct++; streak++;
+    if(blankIdx+1<ph.blanks){
+      phCurrentBlank=blankIdx+1;
+      document.getElementById('ph-blank-status').textContent=`Blanc ${phCurrentBlank+1} sur ${ph.blanks}`;
+      buildMultiOpts(ph,phCurrentBlank);
+    } else {
+      phraseAnswered=true; addXP(20);
+      const fb=document.getElementById('ph-feedback');
+      fb.innerHTML=`✅ Toutes les cases correctes ! <span class="xp-flash">+20 XP</span>`; fb.className='feedback-bar good';
+      document.getElementById('ph-blank-status').textContent='';
+      document.getElementById('ph-note').textContent='📖 '+ph.note; document.getElementById('ph-note').style.display='';
+      document.getElementById('ph-next').disabled=false; document.getElementById('ph-opts').innerHTML='';
+      if(streak%5===0) launchConfetti();
+    }
+  } else {
+    blank.className='blank filled-wrong';
+    btn.classList.add('wrong'); wrong++; streak=0;
+    setTimeout(()=>{
+      blank.textContent='_____'; blank.className='blank';
+      btn.classList.remove('wrong');
+    },600);
+    const fb=document.getElementById('ph-feedback');
+    fb.textContent=`❌ Pas tout à fait, réessayez !`; fb.className='feedback-bar bad';
+  }
+  updateStats();
+}
+
+function loadOrderPhrase(ph){
+  document.getElementById('ph-sentence').textContent=ph.sentence;
+  phOrderWords=[...ph.words].sort(()=>Math.random()-.5);
+  phOrderPlaced=[];
+
+  const answerRow=document.getElementById('ph-answer-row');
+  answerRow.innerHTML='<span class="word-order-placeholder">Cliquez les mots dans le bon ordre…</span>';
+  document.getElementById('ph-word-order-answer').style.display='';
+  document.getElementById('ph-submit').style.display='block';
+
+  const chipsDiv=document.getElementById('ph-word-chips'); chipsDiv.innerHTML='';
+  phOrderWords.forEach((w,i)=>{
+    const chip=document.createElement('div'); chip.className='word-chip'; chip.textContent=w; chip.dataset.idx=i;
+    chip.onclick=()=>placeWord(chip,w,i);
+    chipsDiv.appendChild(chip);
+  });
+}
+
+function placeWord(chip,word,idx){
+  if(chip.classList.contains('used')) return;
+  chip.classList.add('used');
+  phOrderPlaced.push({word,idx});
+  const answerRow=document.getElementById('ph-answer-row');
+  const placeholder=answerRow.querySelector('.word-order-placeholder');
+  if(placeholder) placeholder.remove();
+  const pw=document.createElement('div'); pw.className='placed-word'; pw.textContent=word;
+  pw.onclick=()=>unplaceWord(pw,word,idx,chip);
+  answerRow.appendChild(pw);
+  answerRow.classList.add('has-words');
+}
+
+function unplaceWord(pw,word,idx,chip){
+  if(phraseAnswered) return;
+  pw.remove();
+  phOrderPlaced=phOrderPlaced.filter(p=>!(p.word===word&&p.idx===idx));
+  chip.classList.remove('used');
+  const answerRow=document.getElementById('ph-answer-row');
+  if(answerRow.children.length===0) answerRow.innerHTML='<span class="word-order-placeholder">Cliquez les mots dans le bon ordre…</span>';
+}
+
+function submitPhrase(){
+  if(phraseAnswered) return;
+  const ph=shuffledPhrases[phraseIdx];
+  if(ph.type!=='order') return;
+  const placed=phOrderPlaced.map(p=>p.word).join(' ');
+  const correct_ans=ph.realCorrect||ph.correct;
+  const isCorrect=placed===correct_ans;
+  phraseAnswered=true;
+  const fb=document.getElementById('ph-feedback');
+  document.getElementById('ph-note').textContent='📖 '+ph.note; document.getElementById('ph-note').style.display='';
+  if(isCorrect){
+    correct++; streak++; addXP(18);
+    fb.innerHTML=`✅ Ordre parfait ! <span class="xp-flash">+18 XP</span>`; fb.className='feedback-bar good';
+    if(streak%5===0) launchConfetti();
+  } else {
+    wrong++; streak=0;
+    fb.innerHTML=`❌ L'ordre correct : <em style="color:var(--sea2)">${correct_ans}</em>`; fb.className='feedback-bar bad';
+  }
+  document.getElementById('ph-submit').style.display='none';
+  document.getElementById('ph-next').disabled=false;
+  updateStats();
+}
+
+function nextPhrase(){ phraseIdx++; loadPhrase(); }
+
+// ================================================================
+// MATCH RAPIDE
+// ================================================================
+function startMatchRound(){
+  stopMatchTimer();
+  matchPairsFound=0; matchSelected=null; matchSelType=null;
+  const items=VOCAB[cat];
+  matchItems=[...items].sort(()=>Math.random()-.5).slice(0,6);
+  document.getElementById('match-fb').textContent='';
+  document.getElementById('match-pairs-count').textContent=`0/${matchItems.length}`;
+  const frCol=document.getElementById('m-fr-col'), hrCol=document.getElementById('m-hr-col');
+  frCol.innerHTML=''; hrCol.innerHTML='';
+  [...matchItems].sort(()=>Math.random()-.5).forEach(item=>{
+    const c=document.createElement('div'); c.className='match-card'; c.textContent=item.fr; c.dataset.key=item.fr; c.dataset.type='fr';
+    c.onclick=()=>selectMatch(c,item,'fr'); frCol.appendChild(c);
+  });
+  [...matchItems].sort(()=>Math.random()-.5).forEach(item=>{
+    const c=document.createElement('div'); c.className='match-card'; c.textContent=item.hr; c.dataset.key=item.fr; c.dataset.type='hr';
+    c.onclick=()=>selectMatch(c,item,'hr'); hrCol.appendChild(c);
+  });
+  matchTimeLeft=60;
+  document.getElementById('match-timer-fill').style.width='100%';
+  document.getElementById('match-time').textContent='60';
+  matchTimer=setInterval(()=>{
+    matchTimeLeft--;
+    document.getElementById('match-time').textContent=matchTimeLeft;
+    document.getElementById('match-timer-fill').style.width=(matchTimeLeft/60*100)+'%';
+    if(matchTimeLeft<=0){ clearInterval(matchTimer); document.getElementById('match-fb').textContent='⏱️ Temps écoulé !'; document.getElementById('match-fb').className='feedback-bar bad'; }
+  },1000);
+}
+
+function selectMatch(card,item,type){
+  if(card.classList.contains('matched')||matchTimeLeft<=0) return;
+  if(!matchSelected){ document.querySelectorAll('.match-card.selected').forEach(c=>c.classList.remove('selected')); card.classList.add('selected'); matchSelected=item; matchSelType=type; return; }
+  if(matchSelType===type){ document.querySelectorAll('.match-card.selected').forEach(c=>c.classList.remove('selected')); card.classList.add('selected'); matchSelected=item; matchSelType=type; return; }
+  const frI=type==='fr'?item:matchSelected, hrI=type==='hr'?item:matchSelected;
+  const isMatch=frI.fr===hrI.fr;
+  if(isMatch){
+    document.querySelectorAll('.match-card').forEach(c=>{ if(c.dataset.key===frI.fr){ c.classList.remove('selected'); c.classList.add('matched'); } });
+    matchPairsFound++; correct++; streak++; addXP(8+Math.floor(matchTimeLeft/10));
+    document.getElementById('match-pairs-count').textContent=`${matchPairsFound}/${matchItems.length}`;
+    const fb=document.getElementById('match-fb');
+    if(matchPairsFound===matchItems.length){ fb.textContent='🎉 Toutes les paires !'; fb.className='feedback-bar good'; stopMatchTimer(); launchConfetti(); }
+    else{ fb.textContent=`✓ Bonne paire !`; fb.className='feedback-bar good'; }
+  } else {
+    streak=0; wrong++;
+    card.classList.add('wrong-flash');
+    const prev=document.querySelector('.match-card.selected');
+    if(prev){ prev.classList.add('wrong-flash'); prev.classList.remove('selected'); }
+    setTimeout(()=>document.querySelectorAll('.match-card.wrong-flash').forEach(c=>c.classList.remove('wrong-flash')),400);
+    document.getElementById('match-fb').textContent='✗ Pas une paire…'; document.getElementById('match-fb').className='feedback-bar bad';
+  }
+  matchSelected=null; matchSelType=null;
+  updateStats(); buildCategories();
+}
+function stopMatchTimer(){ if(matchTimer){ clearInterval(matchTimer); matchTimer=null; } }
+
+// ================================================================
+// XP & LEVELS
+// ================================================================
+function addXP(n){ xp+=n; updateXPBar(); }
+function updateXPBar(){
+  const lvl=getLevel(), next=LEVELS[Math.min(lvl.idx+1,LEVELS.length-1)], prev=LEVELS[lvl.idx];
+  const range=next.min-prev.min, inRange=xp-prev.min;
+  const pct=Math.min(100,range>0?(inRange/range*100):100);
+  document.getElementById('level-badge').textContent=lvl.name;
+  document.getElementById('xp-fill').style.width=pct+'%';
+  document.getElementById('xp-label').textContent=`${xp} / ${next.min}`;
+  document.getElementById('s-xp').textContent=xp;
+}
+function getLevel(){ let lvl=LEVELS[0],idx=0; for(let i=0;i<LEVELS.length;i++){if(xp>=LEVELS[i].min){lvl=LEVELS[i];idx=i;}} return{...lvl,idx}; }
+function updateStats(){ document.getElementById('s-streak').textContent=streak; document.getElementById('s-correct').textContent=correct; document.getElementById('s-wrong').textContent=wrong; document.getElementById('s-xp').textContent=xp; updateXPBar(); }
+
+// ================================================================
+// GRAMMAR PANEL
+// ================================================================
+function renderGrammarPanel(item){
+  const panel=document.getElementById('grammar-panel');
+  if(cat==='Verbes essentiels'&&item){
+    const g=VERB_CONJUGATIONS[item.fr];
+    if(!g){panel.innerHTML='';return;}
+    panel.innerHTML=`<div class="grammar-card" style="border-color:rgba(14,138,122,.4)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <div class="grammar-title">${g.title}</div>
+        <div style="font-size:.68rem;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-left:auto">Présent indicatif</div>
+      </div>
+      <div class="grammar-sub">${g.sub}</div>
+      <table class="grammar-table" style="margin-top:14px">
+        <thead><tr><th>Pronom</th><th>Conjugaison</th><th>Exemple</th></tr></thead>
+        <tbody>${g.rows.map((r,i)=>`<tr style="${i===0?'background:rgba(14,138,122,.06)':''}"><td>${r[0]}</td><td class="highlight" style="font-size:1rem;font-weight:600">${r[1]}</td><td style="font-style:italic;color:var(--text3)">${r[2]}</td></tr>`).join('')}</tbody>
+      </table>
+      ${g.note?`<div style="margin-top:14px;padding:10px 14px;background:rgba(232,184,75,.07);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;font-size:.78rem;color:var(--text2);line-height:1.6">💡 ${g.note}</div>`:''}
+    </div>`;
+    return;
+  }
+  const g=GRAMMAR_PANELS[cat];
+  if(!g){panel.innerHTML='';return;}
+  panel.innerHTML=`<div class="grammar-card"><div class="grammar-title">${g.title}</div><div class="grammar-sub">${g.sub}</div><table class="grammar-table"><thead><tr><th>—</th><th>Forme</th><th>Exemple</th></tr></thead><tbody>${g.rows.map(r=>`<tr><td>${r[0]}</td><td class="highlight">${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table></div>`;
+}
+
+// ================================================================
+// HELPERS
+// ================================================================
+function normalize(s){ return s.toLowerCase().replace(/š/g,'s').replace(/č/g,'c').replace(/ć/g,'c').replace(/ž/g,'z').replace(/đ/g,'dj').replace(/[àáâ]/g,'a').replace(/[éèêë]/g,'e').replace(/[íìî]/g,'i').replace(/[óòô]/g,'o').replace(/[úùû]/g,'u'); }
+function levenshtein(a,b){ const m=a.length,n=b.length; const dp=Array.from({length:m+1},(_,i)=>Array.from({length:n+1},(_,j)=>i===0?j:j===0?i:0)); for(let i=1;i<=m;i++)for(let j=1;j<=n;j++) dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]:1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]); return dp[m][n]; }
+
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+
+function launchConfetti(){ const c=document.getElementById('confetti'); const cols=['#0e8a7a','#13b39f','#e8b84b','#ffd174','#d45f3c','#2ec9a0','#e0e8f8']; for(let i=0;i<70;i++){ const p=document.createElement('div'); p.className='confetti-piece'; p.style.cssText=`left:${Math.random()*100}vw;background:${cols[Math.floor(Math.random()*cols.length)]};width:${6+Math.random()*9}px;height:${6+Math.random()*9}px;border-radius:${Math.random()>.5?'50%':'3px'};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*.6}s;`; c.appendChild(p); setTimeout(()=>p.remove(),3500); } }
+
+// ================================================================
+// KEYBOARD
+// ================================================================
+document.addEventListener('keydown',e=>{
+  if(mode==='flashcard'){ if(e.key==='ArrowRight')nextCard(); if(e.key==='ArrowLeft')prevCard(); if(e.key===' '&&!e.repeat){e.preventDefault();flipCard();} if(e.key==='y'||e.key==='Y'){if(cardFlipped)selfAssess(true);} if(e.key==='n'||e.key==='N'){if(cardFlipped)selfAssess(false);} }
+  if(mode==='chrono'){ if(e.key==='Enter'&&!document.getElementById('qz-next').disabled)nextChrono(); }
+  if(mode==='listen'){ if(e.key==='Enter'&&!document.getElementById('listen-next').disabled)nextListen(); if(e.key===' '&&!e.repeat){e.preventDefault();playListenAudio();} }
+  if(mode==='phrases'){ if(e.key==='Enter'){ const next=document.getElementById('ph-next'); if(!next.disabled)nextPhrase(); } }
+});
+
+// ================================================================
+// START
+// ================================================================
+init();
+</script>
+</body>
+</html>
