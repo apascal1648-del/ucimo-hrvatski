@@ -1,0 +1,11 @@
+{
+  "name": "ucimo-hrvatski",
+  "version": "1.0.0",
+  "description": "Application interactive pour apprendre le croate",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
