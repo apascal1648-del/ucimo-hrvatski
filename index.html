@@ -602,8 +602,8 @@ const PHRASES = [
   { type:'multi', sentence:"On _____ učiti, ali _____ uvijek umoran.", answers:["voli","je"], blanks:2, optionSets:[["voli","volim","voliš","volimo"],["je","sam","si","smo"]], translation:"Il aime apprendre mais il est toujours fatigué.", note:"voli = 3sg de voljeti. je = 3sg de biti. Attention : 'on je' (clitique je se place après le premier groupe accentué)." },
 
   // ---- TYPE: order (word order) ----
-  { type:'order', sentence:"Remettez dans l'ordre :", words:["sam","Ja","turistkinja","Francuska","iz"], correct:"Ja sam turistkinja iz Francuske.", translation:"Je suis une touriste de France.", note:"L'ordre de base en croate : Sujet (Ja) + Verbe (sam) + Attribut (turistkinja) + Complément. Les clitiques (sam) viennent en 2ème position." },
-  { type:'order', sentence:"Remettez dans l'ordre :", words:["možete","Govorite","engleski","li"], correct:"Govorite li engleski možete?", realCorrect:"Govorite li engleski?", translation:"Parlez-vous anglais ?", note:"Li se place immédiatement après le verbe conjugué pour former une question. Govorite li = parlez-vous ?" },
+  { type:'order', sentence:"Remettez dans l'ordre :", words:["sam","Ja","turistkinja","Francuske","iz"], correct:"Ja sam turistkinja iz Francuske.", translation:"Je suis une touriste de France.", note:"L'ordre de base en croate : Sujet (Ja) + Verbe (sam) + Attribut (turistkinja) + Complément. Les clitiques (sam) viennent en 2ème position." },
+  { type:'order', sentence:"Remettez dans l'ordre :", words:["Govorite","engleski","li"], correct:"Govorite li engleski?", translation:"Parlez-vous anglais ?", note:"Li se place immédiatement après le verbe conjugué pour former une question. Govorite li = parlez-vous ?" },
   { type:'order', sentence:"Remettez dans l'ordre :", words:["kavu","pijem","Svako","jutro"], correct:"Svako jutro pijem kavu.", translation:"Je bois un café chaque matin.", note:"svako jutro (chaque matin) est souvent placé en tête pour l'emphase. L'accusatif kavu (de kava) suit le verbe." },
   { type:'order', sentence:"Remettez dans l'ordre :", words:["do","Idemo","centra","ravno"], correct:"Idemo ravno do centra.", translation:"Nous allons tout droit jusqu'au centre.", note:"ravno (tout droit) + do + génitif (centra = de centar). do + génitif = jusqu'à." },
   { type:'order', sentence:"Remettez dans l'ordre :", words:["sobu","slobodnu","li","Imate"], correct:"Imate li slobodnu sobu?", translation:"Avez-vous une chambre libre ?", note:"Imate li = avez-vous ? (particule li après le verbe). slobodnu sobu = accusatif fém. (chambre libre, objet direct)." },
@@ -1133,7 +1133,8 @@ function submitPhrase(){
   if(ph.type!=='order') return;
   const placed=phOrderPlaced.map(p=>p.word).join(' ');
   const correct_ans=ph.realCorrect||ph.correct;
-  const isCorrect=placed===correct_ans;
+  const normalize=s=>s.replace(/[?.!,]/g,'').trim().toLowerCase();
+  const isCorrect=normalize(placed)===normalize(correct_ans);
   phraseAnswered=true;
   const fb=document.getElementById('ph-feedback');
   document.getElementById('ph-note').textContent='📖 '+ph.note; document.getElementById('ph-note').style.display='';
